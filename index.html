@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaveh Momeni — AI Systems & Operations</title>
+    <meta name="description" content="Kaveh Momeni — AI Architecture, Intelligent Agents & Systems Engineering. Bridging technical AI complexity with real-world product and operation constraints.">
+    
+    <!-- Favicon: Square dark card with neon blue KW -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231a1a1a'/><text x='50%' y='63%' font-family='-apple-system, BlinkMacSystemFont, sans-serif' font-weight='700' font-size='42' fill='%2300d4ff' text-anchor='middle'>KW</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --text-soft: #666666;
+            --text-muted: #999999;
+            --border: #eaeaea;
+            --accent: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.12);
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--text);
+        }
+
+        /* Navigation - minimal */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        /* Hero - clean and centered */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 3rem 4rem 3rem;
+            max-width: 760px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fade 0.6s ease 0.2s forwards;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .status-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fade 0.6s ease 0.3s forwards;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+            opacity: 0;
+            animation: fade 0.6s ease 0.4s forwards;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0;
+            animation: fade 0.6s ease 0.5s forwards;
+        }
+
+        .cta-arrow {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .cta:hover .cta-arrow {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        @keyframes fade {
+            to { opacity: 1; }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 3rem;
+            max-width: 900px;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        /* Focus & Services */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .focus-block h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+        }
+
+        .focus-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .focus-list li strong {
+            display: block;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .focus-list li p {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        /* Selected Projects Showcase */
+        .projects-list {
+            border-top: 1px solid var(--border);
+        }
+
+        .project-card {
+            padding: 2.2rem 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.4fr 2fr;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            padding-left: 0.75rem;
+        }
+
+        .project-meta h3 {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-desc p {
+            font-size: 0.92rem;
+            color: var(--text-soft);
+            line-height: 1.65;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-tech {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: ui-monospace, SFMono-Regular, monospace;
+        }
+
+        /* Approach */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .approach-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .approach-num {
+            font-size: 0.75rem;
+            color: var(--accent);
+            padding-top: 0.2rem;
+            font-weight: 500;
+        }
+
+        .approach-item h4 {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+
+        .approach-item p {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact h2 {
+            font-family: var(--serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            margin-bottom: 2rem;
+            max-width: 480px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .contact-email {
+            font-size: 1.1rem;
+            color: var(--text);
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            transition: color 0.3s;
+        }
+
+        .contact-email:hover {
+            color: var(--accent);
+        }
+
+        .social-link {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .hero, section, .contact {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .grid-2col, .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Kaveh Momeni</div>
+        <div class="nav-links">
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#focus" class="nav-link">Focus</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="status">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for selective advisory & system architecture</span>
+        </div>
+        <h1>Bridging AI Systems, Complex Workflows & Real-World Operations</h1>
+        <p>I design and engineer resilient AI architectures, intelligent agents, and data-driven systems. Blending technical precision with operational rigor, I transform complex ideas into reliable production systems.</p>
+        <a href="#contact" class="cta">
+            Initiate a discussion
+            <span class="cta-arrow">→</span>
+        </a>
+    </section>
+
+    <section id="focus">
+        <p class="section-title">Overview</p>
+        <div class="grid-2col">
+            <div class="focus-block reveal">
+                <h3>What I Do</h3>
+                <ul class="focus-list">
+                    <li>
+                        <strong>AI & Agentic Systems Architecture</strong>
+                        <p>Designing multi-agent workflows, task-planning engines, and robust data/MLOps pipelines built for stability and scalability.</p>
+                    </li>
+                    <li>
+                        <strong>Technical & Operational Translation</strong>
+                        <p>Serving as the bridge between machine learning engineering, product goals, and operational constraints.</p>
+                    </li>
+                    <li>
+                        <strong>Complex Workflow Automation</strong>
+                        <p>Architecting self-documenting, modular automated pipelines that turn messy processes into structured outputs.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="focus-block reveal">
+                <h3>What I Value</h3>
+                <ul class="focus-list">
+                    <li>
+                        <strong>Local-First & Minimalist Engineering</strong>
+                        <p>Prioritizing light, modular architectures that remain manageable and independent without unnecessary bloat.</p>
+                    </li>
+                    <li>
+                        <strong>Reliability Over Hype</strong>
+                        <p>Building systems that deliver consistent, verifiable value in real deployment environments—not just demo notebooks.</p>
+                    </li>
+                    <li>
+                        <strong>Decentralized & Resilient Futures</strong>
+                        <p>Fascinated by decentralized networks, local-first intelligence, and privacy-preserving data architectures.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <p class="section-title">Selected Systems & Work</p>
+        <div class="projects-list">
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <h3>Dream Print</h3>
+                    <span class="project-tag">Open-Source Agent Skill · Architecture Spec</span>
+                </div>
+                <div class="project-desc">
+                    <p>An open-source agent skill and method that turns vague ideas or complex technical problems into coherent, implementation-ready service architecture blueprints on modular A4 pages.</p>
+                    <div style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                        <a href="https://github.com/kvmmn/dreamprint" target="_blank" rel="noopener" style="font-size: 0.82rem; color: var(--text); text-decoration: underline; text-underline-offset: 3px;">View Repository & Install ↗</a>
+                    </div>
+                    <span class="project-tech">Mermaid · Markdown · System Architecture · Agent Skill</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <h3>Predictive Operations & Demand Forecasting</h3>
+                    <span class="project-tag">MLOps & Enterprise Pipelines</span>
+                </div>
+                <div class="project-desc">
+                    <p>Engineered an end-to-end sales and inventory forecasting microservice. Managed CI/CD deployment pipelines, model monitoring, and automated risk mitigation, reducing out-of-stock events by ~15%.</p>
+                    <span class="project-tech">Python · Scikit-Learn · Docker · Kubernetes · MLOps</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <h3>Autonomous Urban & Real-Estate Advisor</h3>
+                    <span class="project-tag">Real-Time Data Engine</span>
+                </div>
+                <div class="project-desc">
+                    <p>Built an automated data aggregation and decision engine for evaluating housing options. Features automated web scraping, spatial data enrichment, multi-criteria ranking, and interactive visual dashboards.</p>
+                    <span class="project-tech">Python · Selenium · GIS Analytics · Web UI</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <h3>Interactive Audio-Visual Processing System</h3>
+                    <span class="project-tag">WebGL & Signal Processing</span>
+                </div>
+                <div class="project-desc">
+                    <p>Developed a high-performance, browser-native audio visualizer translating real-time frequency data into fluid visual aesthetics and interactive canvas graphics.</p>
+                    <span class="project-tech">JavaScript · Web Audio API · HTML5 Canvas · WebGL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach">
+        <p class="section-title">Methodology</p>
+        <div class="approach-grid">
+            <div class="approach-item reveal">
+                <span class="approach-num">01</span>
+                <div>
+                    <h4>Problem First</h4>
+                    <p>Uncovering root constraints before writing a single line of architectural code.</p>
+                </div>
+            </div>
+            <div class="approach-item reveal">
+                <span class="approach-num">02</span>
+                <div>
+                    <h4>Pragmatic Scope</h4>
+                    <p>Feasible, incremental builds designed around actual operational realities.</p>
+                </div>
+            </div>
+            <div class="approach-item reveal">
+                <span class="approach-num">03</span>
+                <div>
+                    <h4>Modular Design</h4>
+                    <p>Decoupled components that evolve easily without cascading failures.</p>
+                </div>
+            </div>
+            <div class="approach-item reveal">
+                <span class="approach-num">04</span>
+                <div>
+                    <h4>Knowledge Autonomy</h4>
+                    <p>Clear documentation and system designs that leave teams self-sufficient.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Let's build together</h2>
+        <p>Whether you're scaling an AI workflow, architecting a new system, or exploring high-impact collaboration — feel free to reach out.</p>
+        <div class="contact-links">
+            <a href="mailto:kaveh.momeni@gmail.com" class="contact-email">kaveh.momeni@gmail.com</a>
+            <a href="https://linkedin.com/in/kvmmn" target="_blank" rel="noopener" class="social-link">LinkedIn ↗</a>
+            <a href="https://github.com/kvmmn" target="_blank" rel="noopener" class="social-link">GitHub ↗</a>
+        </div>
+    </section>
+
+    <footer>
+        <span>© 2026 Kaveh Momeni</span>
+        <span>Minimal Systems & AI Consulting</span>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
