@@ -172,35 +172,31 @@
 
         .status {
             display: inline-flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 2.5rem;
-            padding: 0.6rem 1.1rem;
-            border-radius: 8px;
-            background: #ffffff;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 2.2rem;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.95);
             border: 1px solid var(--border);
-            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+            box-shadow: 0 2px 14px rgba(15, 23, 42, 0.03);
             width: fit-content;
-            max-width: 100%;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            font-family: var(--sans);
+            transition: all 0.3s ease;
         }
 
         .status:hover {
-            border-color: var(--accent);
-            box-shadow: 0 6px 24px rgba(0, 212, 255, 0.15);
-            transform: translateY(-1px);
+            border-color: rgba(0, 212, 255, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.12);
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background: var(--accent);
             border-radius: 50%;
-            box-shadow: 0 0 12px var(--accent);
-            flex-shrink: 0;
-            margin-top: 0.35rem;
+            box-shadow: 0 0 8px var(--accent);
             position: relative;
+            flex-shrink: 0;
         }
 
         .status-dot::after {
@@ -222,12 +218,25 @@
         }
 
         .status-text {
-            font-size: 0.72rem;
+            font-family: var(--sans);
+            font-size: 0.76rem;
             color: var(--text);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
             font-weight: 500;
-            line-height: 1.45;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .status-text strong {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .status-text span.dot-sep {
+            color: var(--accent);
+            font-size: 0.6rem;
+            opacity: 0.8;
         }
 
         .hero h1 {
@@ -581,34 +590,81 @@
 
         .contact-links {
             display: flex;
-            gap: 2.5rem;
-            justify-content: center;
+            flex-direction: column;
+            gap: 2.2rem;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-artistic-container {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .contact-email {
-            font-size: 1.05rem;
-            font-family: var(--mono);
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 400;
             color: var(--text);
-            font-weight: 500;
             text-decoration: none;
-            padding: 0.9rem 2rem;
-            border-radius: 40px;
-            background: rgba(0, 212, 255, 0.08);
-            border: 1px solid rgba(0, 212, 255, 0.35);
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
+            position: relative;
+            padding-bottom: 0.4rem;
+            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: -0.02em;
+            cursor: pointer;
+        }
+
+        .contact-email::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35%;
+            height: 1.5px;
+            background: var(--text);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.25;
         }
 
         .contact-email:hover {
+            color: var(--accent);
+        }
+
+        .contact-email:hover::after {
+            width: 100%;
             background: var(--accent);
-            color: #ffffff;
-            border-color: var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
-            transform: translateY(-3px);
+            opacity: 1;
+            box-shadow: 0 0 16px var(--accent-glow);
+        }
+
+        .email-copy-hint {
+            font-family: var(--sans);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 0.6rem;
+            transition: all 0.3s ease;
+            opacity: 0.65;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .contact-email:hover + .email-copy-hint {
+            color: var(--accent);
+            opacity: 1;
+            letter-spacing: 0.12em;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+            margin-top: 0.8rem;
         }
 
         .social-link {
@@ -681,8 +737,13 @@
                 white-space: nowrap;
             }
 
-            .hero {
-                padding: 8rem 1.75rem 4rem 1.75rem;
+            .status {
+                padding: 0.4rem 0.9rem;
+                max-width: 100%;
+            }
+
+            .status-text {
+                font-size: clamp(0.62rem, 2.8vw, 0.73rem);
             }
 
             section {
@@ -726,7 +787,7 @@
     <section class="hero">
         <div class="status">
             <span class="status-dot"></span>
-            <span class="status-text">Available for AI Advisory & Systems Architecture</span>
+            <span class="status-text">Available for <strong>AI Advisory & Architecture</strong></span>
         </div>
         <h1>Bridging AI Systems, Complex Workflows & Operational Execution</h1>
         <p>I design and engineer resilient AI architectures, autonomous agents, and data-driven systems. Combining technical precision with operational rigor, I turn complex concepts into reliable production environments.</p>
@@ -787,7 +848,7 @@
                 <div class="project-desc">
                     <p>An open-source agent skill and specification converting unstructured technical challenges into implementation-ready service architecture blueprints formatted on modular A4 pages.</p>
                     <div style="margin-top: 0.6rem; margin-bottom: 0.6rem;">
-                        <a href="https://github.com/kvmmn/dreamprint" target="_blank" rel="noopener" style="font-size: 0.84rem; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">View Repository & Documentation ↗</a>
+                        <a href="https://github.com/kvmmn/dreamprint" target="_blank" rel="noopener" style="font-size: 0.84rem; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">View Repository, Install & Use Skill ↗</a>
                     </div>
                     <span class="project-tech">Mermaid · Systems Architecture · Agent Skills · Technical Specs</span>
                 </div>
@@ -910,9 +971,14 @@
         <h2>Let's build together</h2>
         <p>Whether you're scaling an AI workflow, architecting a new system, or exploring high-impact technical collaboration, feel free to reach out.</p>
         <div class="contact-links">
-            <a href="mailto:kaveh.momeni@gmail.com" class="contact-email">kaveh.momeni@gmail.com</a>
-            <a href="https://linkedin.com/in/kvmmn" target="_blank" rel="noopener" class="social-link">LinkedIn ↗</a>
-            <a href="https://github.com/kvmmn" target="_blank" rel="noopener" class="social-link">GitHub ↗</a>
+            <div class="email-artistic-container">
+                <a href="mailto:kaveh.momeni@gmail.com" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
+                <span class="email-copy-hint" id="copyHint">Click to copy address ↗</span>
+            </div>
+            <div class="social-nav">
+                <a href="https://linkedin.com/in/kvmmn" target="_blank" rel="noopener" class="social-link">LinkedIn ↗</a>
+                <a href="https://github.com/kvmmn" target="_blank" rel="noopener" class="social-link">GitHub ↗</a>
+            </div>
         </div>
     </section>
 
@@ -971,6 +1037,26 @@
             document.body.style.setProperty('--mouse-x', x + '%');
             document.body.style.setProperty('--mouse-y', y + '%');
         });
+
+        // One-click Copy Email with Subtle Visual Text Feedback
+        const emailBtn = document.getElementById('emailBtn');
+        const copyHint = document.getElementById('copyHint');
+        if (emailBtn && copyHint) {
+            emailBtn.addEventListener('click', (e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                    e.preventDefault();
+                    navigator.clipboard.writeText('kaveh.momeni@gmail.com').then(() => {
+                        const originalText = copyHint.innerText;
+                        copyHint.innerText = 'Copied to clipboard ✓';
+                        copyHint.style.color = 'var(--accent)';
+                        setTimeout(() => {
+                            copyHint.innerText = originalText;
+                            copyHint.style.color = '';
+                        }, 2400);
+                    }).catch(() => {});
+                }
+            });
+        }
     </script>
 </body>
 </html>
