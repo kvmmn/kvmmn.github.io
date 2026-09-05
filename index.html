@@ -12,7 +12,7 @@ const BOOKING_FALLBACK_MAILTO =
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaveh Momeni | AI Systems & Operations</title>
-    <meta name="description" content="Kaveh Momeni: Architecture Sprint consulting — turn messy workflows into production-ready agentic and data systems. AI systems architecture, operational translation, workflow automation.">
+    <meta name="description" content="Architecture Sprint with Kaveh Momeni. Map one operational workflow into a build-ready system. Book a 25-minute fit call.">
     
     <!-- Favicon: White background, black text, thin blue border -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='3' y='3' width='94' height='94' rx='20' fill='%23ffffff' stroke='%2300d4ff' stroke-width='6'/><text x='50%' y='63%' font-family='-apple-system, BlinkMacSystemFont, sans-serif' font-weight='700' font-size='42' fill='%231a1a1a' text-anchor='middle'>KW</text></svg>">
@@ -37,6 +37,9 @@ const BOOKING_FALLBACK_MAILTO =
             --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             --shadow-subtle: 0 4px 24px rgba(15, 23, 42, 0.04);
             --shadow-hover: 0 20px 40px rgba(0, 212, 255, 0.12);
+            --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+            --motion-fast: 0.22s;
+            --motion-base: 0.28s;
         }
 
         * {
@@ -83,7 +86,7 @@ const BOOKING_FALLBACK_MAILTO =
                 radial-gradient(600px circle at 50% 50%, rgba(255, 255, 255, 0.5), transparent 85%);
             pointer-events: none;
             z-index: -1;
-            transition: background 0.2s ease-out;
+            transition: background 0.35s var(--ease-premium);
         }
 
         /* Architectural Hairline Grid Overlay */
@@ -154,7 +157,7 @@ const BOOKING_FALLBACK_MAILTO =
             font-size: 0.85rem;
             color: #334155;
             text-decoration: none;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: color var(--motion-base) var(--ease-premium);
             letter-spacing: 0.02em;
             position: relative;
             padding: 0.3rem 0;
@@ -163,10 +166,29 @@ const BOOKING_FALLBACK_MAILTO =
             align-items: center;
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0.15rem;
+            left: 0;
+            width: 100%;
+            height: 1.5px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform var(--motion-base) var(--ease-premium);
+            opacity: 0.85;
+        }
+
         .nav-link:hover,
         .nav-link.active {
             color: var(--accent);
             font-weight: 600;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
         }
 
         /* European Architectural Hero */
@@ -219,13 +241,17 @@ const BOOKING_FALLBACK_MAILTO =
             bottom: -3px;
             border-radius: 50%;
             border: 1.5px solid var(--accent);
-            opacity: 0.7;
-            animation: pulse-ring 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+            opacity: 0.5;
         }
 
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 0.9; }
-            100% { transform: scale(2.4); opacity: 0; }
+        .project-live .status-dot::after {
+            opacity: 0.7;
+            animation: pulse-ring-once 2.2s var(--ease-premium) 1;
+        }
+
+        @keyframes pulse-ring-once {
+            0% { transform: scale(0.85); opacity: 0.85; }
+            100% { transform: scale(2.2); opacity: 0; }
         }
 
         .status-text {
@@ -299,16 +325,30 @@ const BOOKING_FALLBACK_MAILTO =
             min-height: 44px;
             border-radius: 14px;
             border: 1px solid #0f172a;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            transition:
+                transform var(--motion-base) var(--ease-premium),
+                box-shadow var(--motion-base) var(--ease-premium),
+                border-color var(--motion-base) var(--ease-premium);
             max-width: 480px;
             width: 100%;
             cursor: pointer;
         }
 
+        .btn-label-short {
+            display: none;
+        }
+
         .btn-primary:hover {
             transform: translateY(-2px);
             border-color: var(--accent);
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(0, 212, 255, 0.35);
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:focus-visible {
+            outline: none;
+            transform: translateY(-1px);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.35), 0 6px 20px rgba(15, 23, 42, 0.1);
         }
 
         .hero-actions {
@@ -472,13 +512,15 @@ const BOOKING_FALLBACK_MAILTO =
             border-radius: 12px;
             padding: 2.6rem 2.2rem;
             box-shadow: 0 2px 12px rgba(15, 23, 42, 0.02);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition:
+                border-color var(--motion-base) var(--ease-premium),
+                box-shadow var(--motion-base) var(--ease-premium);
             position: relative;
         }
 
         .focus-block:hover {
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.08);
+            border-color: rgba(0, 212, 255, 0.35);
+            box-shadow: 0 6px 24px rgba(0, 212, 255, 0.06);
         }
 
         .focus-block h3 {
@@ -547,16 +589,19 @@ const BOOKING_FALLBACK_MAILTO =
             display: grid;
             grid-template-columns: 1.3fr 2fr;
             gap: 3rem;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition:
+                border-color var(--motion-base) var(--ease-premium),
+                box-shadow var(--motion-base) var(--ease-premium),
+                transform var(--motion-base) var(--ease-premium);
             box-shadow: 0 2px 12px rgba(15, 23, 42, 0.02);
             position: relative;
             overflow: hidden;
         }
 
         .project-card:hover {
-            border-color: rgba(0, 212, 255, 0.45);
-            transform: translateY(-3px);
-            box-shadow: 0 16px 36px rgba(0, 212, 255, 0.08), 0 2px 8px rgba(15, 23, 42, 0.03);
+            border-color: rgba(0, 212, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 212, 255, 0.06), 0 2px 8px rgba(15, 23, 42, 0.03);
         }
 
         .project-card::before {
@@ -568,7 +613,7 @@ const BOOKING_FALLBACK_MAILTO =
             height: 100%;
             background: linear-gradient(180deg, var(--accent), rgba(0, 212, 255, 0.3));
             opacity: 0;
-            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity var(--motion-base) var(--ease-premium);
         }
 
         .project-card:hover::before {
@@ -627,13 +672,16 @@ const BOOKING_FALLBACK_MAILTO =
             display: flex;
             gap: 1.4rem;
             box-shadow: var(--shadow-subtle);
-            transition: all 0.35s ease;
+            transition:
+                border-color var(--motion-base) var(--ease-premium),
+                box-shadow var(--motion-base) var(--ease-premium),
+                transform var(--motion-base) var(--ease-premium);
         }
 
         .approach-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-3px);
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 10px 28px rgba(0, 212, 255, 0.08);
+            transform: translateY(-2px);
         }
 
         .approach-num {
@@ -820,13 +868,62 @@ const BOOKING_FALLBACK_MAILTO =
         /* Reveal Animation */
         .reveal {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(14px);
+            transition:
+                opacity 0.32s var(--ease-premium),
+                transform 0.32s var(--ease-premium);
+            transition-delay: var(--reveal-delay, 0ms);
         }
 
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .btn-label-full {
+                display: none;
+            }
+
+            .btn-label-short {
+                display: inline;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body::before {
+                background:
+                    radial-gradient(1000px circle at 85% 15%, rgba(0, 212, 255, 0.08), transparent 70%),
+                    radial-gradient(1200px circle at 15% 85%, rgba(0, 180, 216, 0.05), transparent 75%),
+                    radial-gradient(600px circle at 50% 50%, rgba(255, 255, 255, 0.5), transparent 85%);
+            }
+
+            .reveal,
+            .reveal.active {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            .btn-primary:hover,
+            .btn-primary:focus-visible,
+            .project-card:hover,
+            .approach-card:hover,
+            .social-link:hover {
+                transform: none !important;
+            }
         }
 
         /* Responsive Framing */
@@ -927,10 +1024,9 @@ const BOOKING_FALLBACK_MAILTO =
             <span class="status-text">Available for <strong class="status-offer">a 2-week Architecture Sprint</strong></span>
         </div>
         <h1>Bridging AI Systems, Complex Workflows & Operational Execution</h1>
-        <p>I design the architecture that turns a messy workflow into a production-ready agentic or data system — then leave your team able to build.</p>
+        <p>I design the architecture that turns a messy workflow into a production-ready system. Your team leaves able to build.</p>
         <div class="hero-actions">
-            <a href="#" class="btn-primary" id="heroBookingBtn">Schedule a 25-minute fit call</a>
-            <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="hero-secondary">Email</a>
+            <a href="#" class="btn-primary" id="heroBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
         </div>
         <p class="trust-line">Berlin · PMP® · M.Sc. Data Science</p>
     </section>
@@ -942,7 +1038,7 @@ const BOOKING_FALLBACK_MAILTO =
             <ul class="focus-list">
                 <li>
                     <strong>Map the operational constraint</strong>
-                    <p>Identify the real bottleneck — not the demo — before any architecture decisions.</p>
+                    <p>Identify the real bottleneck, not the demo, before any architecture decisions.</p>
                 </li>
                 <li>
                     <strong>Define the agent/system + governance path</strong>
@@ -950,11 +1046,11 @@ const BOOKING_FALLBACK_MAILTO =
                 </li>
                 <li>
                     <strong>Deliver a build-ready blueprint</strong>
-                    <p>Hand off a blueprint your team can execute — scoped, documented, and production-oriented.</p>
+                    <p>Hand off a blueprint your team can execute: scoped, documented, and production-oriented.</p>
                 </li>
             </ul>
             <p class="offer-who"><strong>Who:</strong> Teams with AI demos or messy ops that need one workflow in production.</p>
-            <p class="offer-after"><strong>After:</strong> Optional scoped build or advisory — not open-ended “anything AI”.</p>
+            <p class="offer-after"><strong>After the sprint:</strong> optional scoped build or advisory. Not an open-ended anything-AI retainer.</p>
         </div>
     </section>
 
@@ -983,15 +1079,15 @@ const BOOKING_FALLBACK_MAILTO =
 
     <section id="projects">
         <p class="section-title" data-step="2">Selected Systems & Work</p>
-        <div class="projects-list">
+        <div class="projects-list" data-reveal-group>
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Charbot — Production Telegram Ops Coordinator</h3>
+                    <h3>Charbot: Production Telegram Ops Coordinator</h3>
                     <span class="project-tag">Live ops system · Telegram</span>
                     <span class="project-live"><span class="status-dot"></span> Live</span>
                 </div>
                 <div class="project-desc">
-                    <p>Live Fly-backed Telegram ops bot for Chaharsotoon — speech-act tasking, Neon Postgres, voice, Persian UI. A reference for “build one like this,” not a public SaaS.</p>
+                    <p>Live Fly-backed Telegram ops bot for Chaharsotoon with speech-act tasking, Neon Postgres, voice, Persian UI. A reference for “build one like this,” not a public SaaS.</p>
                     <div class="project-links">
                         <a href="https://github.com/kvmmn/charbot" target="_blank" rel="noopener">GitHub ↗</a>
                         <a href="https://chaharsotoon-charbot.fly.dev" target="_blank" rel="noopener">Health / status ↗</a>
@@ -1002,7 +1098,7 @@ const BOOKING_FALLBACK_MAILTO =
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Dream Print — Open-Source Agent Skill</h3>
+                    <h3>Dream Print: Open-Source Agent Skill</h3>
                     <span class="project-tag">Open-source · Architecture spec</span>
                 </div>
                 <div class="project-desc">
@@ -1020,29 +1116,29 @@ const BOOKING_FALLBACK_MAILTO =
                     <span class="project-tag">Enterprise Operations & AI Workflow</span>
                 </div>
                 <div class="project-desc">
-                    <p>Established an AI-assisted PMO governance model for complex engineering environments — standardized financial tracking, automated risk mitigation, and executive reporting across 60+ active small/mid-scale projects.</p>
+                    <p>Established an AI-assisted PMO governance model for complex engineering environments with standardized financial tracking, automated risk mitigation, and executive reporting across 60+ active small/mid-scale projects.</p>
                     <span class="project-tech">PMP® Governance · Agile/Scrum · Automated Risk Logs · Process Optimization</span>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Demand Forecasting in Production — SnappStore</h3>
+                    <h3>Demand Forecasting in Production (SnappStore)</h3>
                     <span class="project-tag">MLOps & E-Commerce Infrastructure</span>
                 </div>
                 <div class="project-desc">
-                    <p>Hybrid ARIMA+LSTM demand forecasting microservice for retail operations — deployed on Docker/Kubernetes with FastAPI, reducing stock-outs by ~12%.</p>
+                    <p>Hybrid ARIMA+LSTM demand forecasting microservice for retail operations, deployed on Docker/Kubernetes with FastAPI, reducing stock-outs by ~12%.</p>
                     <span class="project-tech">Python · ARIMA · LSTM · FastAPI · Docker · Kubernetes</span>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>KAV — Research Orchestration Engine</h3>
+                    <h3>KAV: Research Orchestration Engine</h3>
                     <span class="project-tag">Agentic Orchestration · v0.1</span>
                 </div>
                 <div class="project-desc">
-                    <p>Early-stage research orchestration engine (Knowledge through Adaptive Validation) — v0.1 exploring hypothesis formulation and structured knowledge synthesis. ADR chose Deep Agents over LangGraph/LangChain; SDK uses Pydantic. MIT licensed.</p>
+                    <p>Early-stage research orchestration engine (Knowledge through Adaptive Validation), v0.1 exploring hypothesis formulation and structured knowledge synthesis. ADR chose Deep Agents over LangGraph/LangChain; SDK uses Pydantic. MIT licensed.</p>
                     <span class="project-tech">Python · Deep Agents · Pydantic · State Machines · MIT</span>
                 </div>
             </div>
@@ -1053,7 +1149,7 @@ const BOOKING_FALLBACK_MAILTO =
                     <span class="project-tag">Quantitative ML · Financial Tournament</span>
                 </div>
                 <div class="project-desc">
-                    <p>End-to-end quantitative ML pipeline for the Numerai global financial tournament — era-aware cross-validation, LightGBM modeling, and financial risk scoring.</p>
+                    <p>End-to-end quantitative ML pipeline for the Numerai global financial tournament with era-aware cross-validation, LightGBM modeling, and financial risk scoring.</p>
                     <span class="project-tech">Python · LightGBM · Era-Aware CV · Financial Risk Scoring</span>
                 </div>
             </div>
@@ -1062,7 +1158,7 @@ const BOOKING_FALLBACK_MAILTO =
 
     <section id="approach">
         <p class="section-title" data-step="3">Methodology</p>
-        <div class="approach-grid">
+        <div class="approach-grid" data-reveal-group>
             <div class="approach-card reveal">
                 <span class="approach-num">01</span>
                 <div>
@@ -1096,11 +1192,10 @@ const BOOKING_FALLBACK_MAILTO =
 
     <section class="contact" id="contact">
         <h2>Book a fit call</h2>
-        <p>Whether you're scaling an AI workflow, architecting a new system, or exploring a scoped Architecture Sprint — reach out for a fit call.</p>
+        <p>If you have one workflow that should reach production, start with a short fit call.</p>
         <div class="contact-links">
             <div class="contact-cta-wrap">
-                <a href="#" class="btn-primary" id="contactBookingBtn">Schedule a 25-minute fit call</a>
-                <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="hero-secondary">Email</a>
+                <a href="#" class="btn-primary" id="contactBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
             </div>
             <div class="email-artistic-container">
                 <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
@@ -1149,15 +1244,56 @@ const BOOKING_FALLBACK_MAILTO =
         wireBookingButton(document.getElementById('contactBookingBtn'));
 
         const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const REVEAL_DURATION_MS = 320;
+        const REVEAL_MAX_SECTION_MS = 400;
+        const REVEAL_STAGGER_MS = 60;
+
+        const revealElement = (el, delayMs = 0) => {
+            el.style.setProperty('--reveal-delay', `${delayMs}ms`);
+            el.classList.add('active');
+        };
+
+        const staggerRevealGroup = (group) => {
+            const items = group.querySelectorAll('.reveal:not(.active)');
+            if (!items.length) return;
+            const count = items.length;
+            let staggerMs = REVEAL_STAGGER_MS;
+            if (count > 1) {
+                const budget = REVEAL_MAX_SECTION_MS - REVEAL_DURATION_MS;
+                staggerMs = Math.min(REVEAL_STAGGER_MS, Math.floor(budget / (count - 1)));
+            }
+            items.forEach((el, i) => revealElement(el, i * staggerMs));
+        };
+
+        const initReveal = () => {
+            if (prefersReducedMotion) {
+                reveals.forEach(el => el.classList.add('active'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const target = entry.target;
+                    if (target.hasAttribute('data-reveal-group')) {
+                        staggerRevealGroup(target);
+                    } else if (target.classList.contains('reveal')) {
+                        revealElement(target, 0);
+                    }
+                    observer.unobserve(target);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -72px 0px' });
+
+            document.querySelectorAll('[data-reveal-group]').forEach(group => observer.observe(group));
             reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-                    el.classList.add('active');
+                if (!el.closest('[data-reveal-group]')) {
+                    observer.observe(el);
                 }
             });
         };
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
+
+        initReveal();
 
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
@@ -1191,13 +1327,15 @@ const BOOKING_FALLBACK_MAILTO =
         window.addEventListener('scroll', highlightNavOnScroll);
         window.addEventListener('load', highlightNavOnScroll);
 
-        // Interactive mouse spotlight effect tracking for subtle background movement
-        window.addEventListener('mousemove', e => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            document.body.style.setProperty('--mouse-x', x + '%');
-            document.body.style.setProperty('--mouse-y', y + '%');
-        });
+        // Soft mesh parallax (low amplitude); skipped when reduced motion is preferred
+        if (!prefersReducedMotion) {
+            window.addEventListener('mousemove', e => {
+                const dx = (e.clientX / window.innerWidth - 0.5) * 6;
+                const dy = (e.clientY / window.innerHeight - 0.5) * 6;
+                document.body.style.setProperty('--mouse-x', (85 + dx) + '%');
+                document.body.style.setProperty('--mouse-y', (15 + dy) + '%');
+            });
+        }
 
         // One-click Copy Email with Subtle Visual Text Feedback
         const emailBtn = document.getElementById('emailBtn');
