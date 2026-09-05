@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaveh Momeni | AI Systems & Operations</title>
-    <meta name="description" content="Kaveh Momeni: AI Architecture, Intelligent Agents & Systems Engineering. Bridging technical AI complexity with real-world product and operation constraints.">
+    <meta name="description" content="Kaveh Momeni: Architecture Sprint consulting — turn messy workflows into production-ready agentic and data systems. AI systems architecture, operational translation, workflow automation.">
     
     <!-- Favicon: White background, black text, thin blue border -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='3' y='3' width='94' height='94' rx='20' fill='%23ffffff' stroke='%2300d4ff' stroke-width='6'/><text x='50%' y='63%' font-family='-apple-system, BlinkMacSystemFont, sans-serif' font-weight='700' font-size='42' fill='%231a1a1a' text-anchor='middle'>KW</text></svg>">
@@ -305,6 +305,106 @@
             color: #ffffff;
             transform: translateX(8px);
             box-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .hero-secondary {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            text-decoration: none;
+            font-family: var(--mono);
+            letter-spacing: 0.04em;
+            transition: color 0.3s ease;
+        }
+
+        .hero-secondary:hover {
+            color: var(--accent);
+        }
+
+        .trust-line {
+            margin-top: 2.4rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-family: var(--mono);
+            letter-spacing: 0.06em;
+        }
+
+        .offer-strip {
+            padding: 2rem 4rem 4rem;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        .offer-meta {
+            font-size: 0.78rem;
+            font-family: var(--mono);
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.6rem;
+            font-weight: 500;
+        }
+
+        .offer-who,
+        .offer-after {
+            margin-top: 1.6rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        .offer-who strong,
+        .offer-after strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .grid-1col {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 640px;
+        }
+
+        .project-links {
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            font-size: 0.84rem;
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 500;
+        }
+
+        .project-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            margin-top: 0.5rem;
+        }
+
+        .project-live .status-dot {
+            width: 5px;
+            height: 5px;
+        }
+
+        .contact-cta-wrap {
+            margin-bottom: 2.4rem;
         }
 
         /* Avant-Garde European Section Spacing & Widths */
@@ -770,6 +870,10 @@
                 flex-direction: column;
                 gap: 1.2rem;
             }
+
+            .offer-strip {
+                padding: 1.5rem 1.75rem 3rem;
+            }
         }
     </style>
 </head>
@@ -777,7 +881,7 @@
     <nav>
         <div class="logo">Kaveh Momeni</div>
         <div class="nav-links">
-            <a href="#focus" class="nav-link">Focus</a>
+            <a href="#offer" class="nav-link">Offer</a>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#approach" class="nav-link">Approach</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -787,50 +891,60 @@
     <section class="hero">
         <div class="status">
             <span class="status-dot"></span>
-            <span class="status-text">Available for <strong>AI Advisory & Architecture</strong></span>
+            <span class="status-text">Available for a <strong>2-week Architecture Sprint</strong></span>
         </div>
         <h1>Bridging AI Systems, Complex Workflows & Operational Execution</h1>
-        <p>I design and engineer resilient AI architectures, autonomous agents, and data-driven systems. Combining technical precision with operational rigor, I turn complex concepts into reliable production environments.</p>
-        <a href="#contact" class="cta">
-            Initiate a Discussion
-            <span class="cta-arrow">→</span>
-        </a>
+        <p>I design the architecture that turns a messy workflow into a production-ready agentic or data system — then leave your team able to build.</p>
+        <div class="hero-actions">
+            <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="cta">
+                Book a 25-minute fit call
+                <span class="cta-arrow">→</span>
+            </a>
+            <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="hero-secondary">Email</a>
+        </div>
+        <p class="trust-line">Berlin · PMP® · M.Sc. Data Science</p>
+    </section>
+
+    <section class="offer-strip" id="offer">
+        <div class="focus-block reveal">
+            <h3>Architecture Sprint</h3>
+            <p class="offer-meta">2 weeks · one workflow</p>
+            <ul class="focus-list">
+                <li>
+                    <strong>Map the operational constraint</strong>
+                    <p>Identify the real bottleneck — not the demo — before any architecture decisions.</p>
+                </li>
+                <li>
+                    <strong>Define the agent/system + governance path</strong>
+                    <p>Shape the agentic or data system design with clear ownership, guardrails, and delivery boundaries.</p>
+                </li>
+                <li>
+                    <strong>Deliver a build-ready blueprint</strong>
+                    <p>Hand off a blueprint your team can execute — scoped, documented, and production-oriented.</p>
+                </li>
+            </ul>
+            <p class="offer-who"><strong>Who:</strong> Teams with AI demos or messy ops that need one workflow in production.</p>
+            <p class="offer-after"><strong>After:</strong> Optional scoped build or advisory — not open-ended “anything AI”.</p>
+        </div>
     </section>
 
     <section id="focus">
         <p class="section-title" data-step="1">Overview</p>
-        <div class="grid-2col">
+        <div class="grid-1col">
             <div class="focus-block reveal">
                 <h3>What I Do</h3>
                 <ul class="focus-list">
                     <li>
                         <strong>AI & Agentic Systems Architecture</strong>
-                        <p>Architecting multi-agent workflows, autonomous task engines, and scalable MLOps pipelines engineered for long-term stability.</p>
+                        <p>Multi-agent and automation architectures engineered for long-term stability.</p>
                     </li>
                     <li>
                         <strong>Technical & Operational Translation</strong>
-                        <p>Serving as the strategic bridge connecting machine learning engineering, product vision, and enterprise execution constraints.</p>
+                        <p>Bridge ML engineering, product, and delivery constraints (PMP®).</p>
                     </li>
                     <li>
                         <strong>Complex Workflow Automation</strong>
-                        <p>Designing modular, self-documenting automated pipelines that transform unstructured processes into predictable business outputs.</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="focus-block reveal">
-                <h3>What I Value</h3>
-                <ul class="focus-list">
-                    <li>
-                        <strong>Local-First & Minimalist Engineering</strong>
-                        <p>Prioritizing clean, decoupled architectures that maintain maximum operational independence without architectural bloat.</p>
-                    </li>
-                    <li>
-                        <strong>Verifiable Production Reliability</strong>
-                        <p>Building high-integrity systems engineered for measurable impact in live environments rather than experimental prototypes.</p>
-                    </li>
-                    <li>
-                        <strong>Decentralized & Resilient Infrastructure</strong>
-                        <p>Advancing local-first intelligence, privacy-focused data architectures, and resilient distributed technical ecosystems.</p>
+                        <p>Modular pipelines that make unstructured ops predictable.</p>
                     </li>
                 </ul>
             </div>
@@ -842,13 +956,29 @@
         <div class="projects-list">
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Dream Print</h3>
+                    <h3>Charbot — Production Telegram Ops Coordinator</h3>
+                    <span class="project-tag">Live ops system · Telegram</span>
+                    <span class="project-live"><span class="status-dot"></span> Live</span>
+                </div>
+                <div class="project-desc">
+                    <p>Live Fly-backed Telegram ops bot for Chaharsotoon — speech-act tasking, Neon Postgres, voice, Persian UI. A reference for “build one like this,” not a public SaaS.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/kvmmn/charbot" target="_blank" rel="noopener">GitHub ↗</a>
+                        <a href="https://chaharsotoon-charbot.fly.dev" target="_blank" rel="noopener">Health / status ↗</a>
+                    </div>
+                    <span class="project-tech">Python · Fly.io · Neon Postgres · Telegram Bot API · Speech</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <h3>Dream Print — Open-Source Agent Skill</h3>
                     <span class="project-tag">Open-Source Agent Skill · Architecture Specification</span>
                 </div>
                 <div class="project-desc">
                     <p>An open-source agent skill and specification converting unstructured technical challenges into implementation-ready service architecture blueprints formatted on modular A4 pages.</p>
-                    <div style="margin-top: 0.6rem; margin-bottom: 0.6rem;">
-                        <a href="https://github.com/kvmmn/agent-skills/tree/main/dreamprint" target="_blank" rel="noopener" style="font-size: 0.84rem; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">View Repository, Install & Use Skill ↗</a>
+                    <div class="project-links">
+                        <a href="https://github.com/kvmmn/agent-skills/tree/main/dreamprint" target="_blank" rel="noopener">View Repository, Install & Use Skill ↗</a>
                     </div>
                     <span class="project-tech">Mermaid · Systems Architecture · Agent Skills · Technical Specs</span>
                 </div>
@@ -856,78 +986,45 @@
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>KAV: Autonomous AI Research & Validation Engine</h3>
-                    <span class="project-tag">Agentic Orchestration & Knowledge Synthesis</span>
-                </div>
-                <div class="project-desc">
-                    <p>Engineered an autonomous research orchestration engine (Knowledge through Adaptive Validation) that formulates hypotheses, executes ML benchmark evaluations, and distills structured knowledge memories.</p>
-                    <span class="project-tech">LangGraph · LangChain · LangSmith · State Machines · Multi-Agent Orchestration</span>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-meta">
-                    <h3>CineCore: Film Production Operating Canvas</h3>
-                    <span class="project-tag">Production Intelligence & Executive Canvas</span>
-                </div>
-                <div class="project-desc">
-                    <p>Designed a specialized editorial operating canvas for film producers, uniting quiet technical surfaces with evidence-driven workflows to streamline script analysis, scene breakdown, and production decisions.</p>
-                    <span class="project-tech">Next.js · React · TypeScript · Editorial Design Systems</span>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-meta">
-                    <h3>Numerai Quantitative Tournament Pipeline & Bot</h3>
-                    <span class="project-tag">Quantitative ML & Automated Trading Bot</span>
-                </div>
-                <div class="project-desc">
-                    <p>Architected an end-to-end quantitative ML pipeline for the Numerai global financial tournament. Features era-aware cross-validation, LightGBM modeling, financial risk scoring, and automated live submission bots.</p>
-                    <span class="project-tech">Python · LightGBM · Time-Series ML · Financial Risk Scoring · Automated Bot</span>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-meta">
-                    <h3>AI-Enhanced PMO & Operational Governance Framework</h3>
+                    <h3>AI-Enhanced PMO & Operational Governance</h3>
                     <span class="project-tag">Enterprise Operations & AI Workflow</span>
                 </div>
                 <div class="project-desc">
-                    <p>Established an AI-assisted PMO governance model for complex engineering environments, introducing standardized financial tracking, automated risk mitigation, and executive reporting across 60+ active projects.</p>
+                    <p>Established an AI-assisted PMO governance model for complex engineering environments — standardized financial tracking, automated risk mitigation, and executive reporting across 60+ active small/mid-scale projects.</p>
                     <span class="project-tech">PMP® Governance · Agile/Scrum · Automated Risk Logs · Process Optimization</span>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Predictive Demand & Inventory Forecasting Microservice</h3>
+                    <h3>Demand Forecasting in Production — SnappStore</h3>
                     <span class="project-tag">MLOps & E-Commerce Infrastructure</span>
                 </div>
                 <div class="project-desc">
-                    <p>Deployed a high-throughput automated sales-forecasting microservice for retail operations. Integrated CI/CD pipelines and infrastructure telemetry to optimize inventory allocation and reduce stock-outs by ~15%.</p>
-                    <span class="project-tech">Python · Time Series Forecasting · Docker · Kubernetes · MLflow</span>
+                    <p>Hybrid ARIMA+LSTM demand forecasting microservice for retail operations — deployed on Docker/Kubernetes with FastAPI, reducing stock-outs by ~12%.</p>
+                    <span class="project-tech">Python · ARIMA · LSTM · FastAPI · Docker · Kubernetes</span>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Autonomous Housing & Spatial Intelligence Engine</h3>
-                    <span class="project-tag">Real-Time Spatial Data Engine</span>
+                    <h3>KAV — Research Orchestration Engine</h3>
+                    <span class="project-tag">Agentic Orchestration · v0.1</span>
                 </div>
                 <div class="project-desc">
-                    <p>Built an automated data aggregation and spatial intelligence engine for real-estate analytics. Integrates automated web scraping pipelines, spatial data enrichment, and multi-criteria ranking dashboards.</p>
-                    <span class="project-tech">Python · Spatial Analytics · Automated Scraping · Interactive Web Dashboards</span>
+                    <p>Early-stage research orchestration engine (Knowledge through Adaptive Validation) — v0.1 exploring hypothesis formulation and structured knowledge synthesis. ADR chose Deep Agents over LangGraph/LangChain; SDK uses Pydantic. MIT licensed.</p>
+                    <span class="project-tech">Python · Deep Agents · Pydantic · State Machines · MIT</span>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-meta">
-                    <h3>Interactive Audio-Visual Signal Processing System</h3>
-                    <span class="project-tag">WebGL & Signal Processing</span>
+                    <h3>Numerai Quantitative Pipeline</h3>
+                    <span class="project-tag">Quantitative ML · Financial Tournament</span>
                 </div>
                 <div class="project-desc">
-                    <p>Developed a high-performance browser-native audio visualizer translating real-time frequency spectrums into fluid visual aesthetics and responsive WebGL canvas graphics.</p>
-                    <span class="project-tech">JavaScript · Web Audio API · HTML5 Canvas · WebGL</span>
+                    <p>End-to-end quantitative ML pipeline for the Numerai global financial tournament — era-aware cross-validation, LightGBM modeling, and financial risk scoring.</p>
+                    <span class="project-tech">Python · LightGBM · Era-Aware CV · Financial Risk Scoring</span>
                 </div>
             </div>
         </div>
@@ -969,10 +1066,16 @@
 
     <section class="contact" id="contact">
         <h2>Let's build together</h2>
-        <p>Whether you're scaling an AI workflow, architecting a new system, or exploring high-impact technical collaboration, feel free to reach out.</p>
+        <p>Whether you're scaling an AI workflow, architecting a new system, or exploring a scoped Architecture Sprint — reach out for a fit call.</p>
         <div class="contact-links">
+            <div class="contact-cta-wrap">
+                <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="cta">
+                    Book a 25-minute fit call
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
             <div class="email-artistic-container">
-                <a href="mailto:kaveh.momeni@gmail.com" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
+                <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
                 <span class="email-copy-hint" id="copyHint">Click to copy address ↗</span>
             </div>
             <div class="social-nav">
@@ -983,7 +1086,7 @@
     </section>
 
     <footer>
-        <span>© 2026 Kaveh Momeni (or just call me Kawe ☕️)</span>
+        <span>© 2026 Kaveh Momeni (or just call me Kawe)</span>
     </footer>
 
     <script>
