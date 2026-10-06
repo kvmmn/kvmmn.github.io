@@ -1,56 +1,105 @@
 <!DOCTYPE html>
-<!--
-Owner: paste Cal.com link here.
-<script>
-const BOOKING_URL = 'https://cal.com/kvmmn/architecture-sprint';
-const BOOKING_FALLBACK_MAILTO =
-  'mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call&body=Name%3A%0ACompany%3A%0AOne-sentence%20workflow%20problem%3A%0A';
-</script>
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaveh Momeni | AI Systems & Operations</title>
-    <meta name="description" content="Architecture Sprint with Kaveh Momeni. Map one operational workflow into a build-ready system. Book a 25-minute fit call.">
-    
+    <title>Kaveh Momeni | Data Science & AI Project Management</title>
+    <meta name="description" content="Kaveh Momeni, Berlin. Data science and AI project management consulting: take one AI or data workflow from demo to production. PMP®, 5+ years of production ML, 15+ years of delivery.">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://kvmmn.github.io/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kvmmn.github.io/">
+    <meta property="og:title" content="Kaveh Momeni | Data Science & AI Project Management">
+    <meta property="og:description" content="Turning AI and data work into shipped products. A 2-week Architecture Sprint for one workflow, and hands-on AI workshops for project teams.">
+    <meta name="twitter:card" content="summary">
+
     <!-- Favicon: White background, black text, thin blue border -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='3' y='3' width='94' height='94' rx='20' fill='%23ffffff' stroke='%2300d4ff' stroke-width='6'/><text x='50%' y='63%' font-family='-apple-system, BlinkMacSystemFont, sans-serif' font-weight='700' font-size='42' fill='%231a1a1a' text-anchor='middle'>KW</text></svg>">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Kaveh Momeni: Data Science & AI Project Management",
+        "url": "https://kvmmn.github.io/",
+        "areaServed": ["Berlin", "Europe", "Remote"],
+        "founder": {
+            "@type": "Person",
+            "name": "Kaveh Momeni",
+            "jobTitle": "Data Science & AI Project Management Consultant",
+            "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
+            "email": "mailto:kaveh.momeni@gmail.com",
+            "sameAs": ["https://linkedin.com/in/kvmmn", "https://github.com/kvmmn"]
+        },
+        "makesOffer": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architecture Sprint", "description": "Two weeks, one workflow: constraint map, system and governance design, and a build-ready blueprint." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI for Project Teams", "description": "Hands-on AI workshops for project managers and PMOs." } }
+        ]
+    }
+    </script>
+
     <style>
         :root {
             --bg: #f8f9fa;
             --surface: #ffffff;
-            --surface-hover: #ffffff;
+            --surface-soft: #f1f5f9;
             --text: #0f172a;
             --text-soft: #475569;
             --text-muted: #64748b;
             --border: #e2e8f0;
-            --border-strong: #00d4ff;
             --accent: #00d4ff;
+            --accent-ink: #0e7490;
+            --accent-wash: rgba(0, 212, 255, 0.08);
+            --accent-line: rgba(0, 212, 255, 0.35);
             --accent-glow: rgba(0, 212, 255, 0.25);
+            --btn-bg: #0f172a;
+            --btn-text: #ffffff;
+            --nav-bg: rgba(248, 249, 250, 0.92);
+            --grid-line: rgba(0, 212, 255, 0.03);
+            --mesh-center: rgba(255, 255, 255, 0.5);
+            --contact-bg: linear-gradient(145deg, #ffffff 0%, rgba(240, 249, 255, 0.7) 100%);
             --serif: 'Instrument Serif', Georgia, serif;
             --sans: 'Inter', -apple-system, sans-serif;
             --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            --shadow-subtle: 0 4px 24px rgba(15, 23, 42, 0.04);
-            --shadow-hover: 0 20px 40px rgba(0, 212, 255, 0.12);
+            --shadow-subtle: 0 2px 12px rgba(15, 23, 42, 0.03);
+            --shadow-hover: 0 12px 28px rgba(0, 212, 255, 0.07), 0 2px 8px rgba(15, 23, 42, 0.03);
             --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
-            --motion-fast: 0.22s;
             --motion-base: 0.28s;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0b1120;
+                --surface: #111a2e;
+                --surface-soft: #0f172a;
+                --text: #e2e8f0;
+                --text-soft: #a3b1c6;
+                --text-muted: #7c8aa3;
+                --border: #1f2a40;
+                --accent-ink: #22d3ee;
+                --accent-wash: rgba(0, 212, 255, 0.1);
+                --accent-line: rgba(0, 212, 255, 0.4);
+                --btn-bg: #e2e8f0;
+                --btn-text: #0b1120;
+                --nav-bg: rgba(11, 17, 32, 0.86);
+                --grid-line: rgba(0, 212, 255, 0.04);
+                --mesh-center: rgba(11, 17, 32, 0);
+                --contact-bg: linear-gradient(145deg, #111a2e 0%, rgba(8, 47, 73, 0.55) 100%);
+                --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.25);
+                --shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 212, 255, 0.12);
+            }
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
         body {
             font-family: var(--sans);
@@ -64,64 +113,73 @@ const BOOKING_FALLBACK_MAILTO =
             position: relative;
         }
 
-        h1, h2, h3, h4 {
-            text-wrap: balance;
+        h1, h2, h3, h4 { text-wrap: balance; }
+        p { text-wrap: pretty; }
+
+        a { color: inherit; }
+
+        [hidden] { display: none !important; }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 6px;
         }
 
-        p {
-            text-wrap: pretty;
-        }
-
-        /* European Minimalist Ambient Mesh Gradient */
+        /* Ambient mesh gradient */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(1000px circle at calc(var(--mouse-x, 85%)) calc(var(--mouse-y, 15%)), rgba(0, 212, 255, 0.08), transparent 70%),
+            inset: 0;
+            background:
+                radial-gradient(1000px circle at var(--mouse-x, 85%) var(--mouse-y, 15%), rgba(0, 212, 255, 0.08), transparent 70%),
                 radial-gradient(1200px circle at 15% 85%, rgba(0, 180, 216, 0.05), transparent 75%),
-                radial-gradient(600px circle at 50% 50%, rgba(255, 255, 255, 0.5), transparent 85%);
+                radial-gradient(600px circle at 50% 50%, var(--mesh-center), transparent 85%);
             pointer-events: none;
             z-index: -1;
-            transition: background 0.35s var(--ease-premium);
         }
 
-        /* Architectural Hairline Grid Overlay */
+        /* Architectural hairline grid */
         body::after {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(to right, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            inset: 0;
+            background-image:
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
             background-size: 80px 80px;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.8;
         }
 
-        ::selection {
-            background: var(--accent);
-            color: #fff;
-        }
+        ::selection { background: var(--accent); color: #fff; }
 
-        /* Swiss Precision Navigation */
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -100px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            z-index: 200;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1rem 3.5rem;
+            padding: 0.9rem 3.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1.5rem;
             z-index: 100;
-            background: rgba(248, 249, 250, 0.92);
+            background: var(--nav-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--border);
@@ -140,36 +198,39 @@ const BOOKING_FALLBACK_MAILTO =
         .logo {
             font-family: var(--serif);
             font-size: 1.35rem;
-            font-weight: 400;
             letter-spacing: -0.01em;
             color: var(--text);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-right {
             display: flex;
             align-items: center;
+            gap: 2rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
-            font-family: var(--sans);
+            gap: 1.8rem;
         }
 
         .nav-link {
             font-size: 0.85rem;
-            color: #334155;
+            color: var(--text-soft);
             text-decoration: none;
-            transition: color var(--motion-base) var(--ease-premium);
             letter-spacing: 0.02em;
             position: relative;
-            padding: 0.3rem 0;
             min-height: 44px;
             display: inline-flex;
             align-items: center;
+            transition: color var(--motion-base) var(--ease-premium);
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0.15rem;
+            bottom: 0.55rem;
             left: 0;
             width: 100%;
             height: 1.5px;
@@ -177,30 +238,41 @@ const BOOKING_FALLBACK_MAILTO =
             transform: scaleX(0);
             transform-origin: left center;
             transition: transform var(--motion-base) var(--ease-premium);
-            opacity: 0.85;
         }
 
         .nav-link:hover,
-        .nav-link.active {
-            color: var(--accent);
-            font-weight: 600;
-        }
+        .nav-link.active { color: var(--text); }
 
         .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: scaleX(1);
+        .nav-link.active::after { transform: scaleX(1); }
+
+        .nav-cta {
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--btn-text);
+            background: var(--btn-bg);
+            padding: 0.55rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--btn-bg);
+            white-space: nowrap;
+            transition: border-color var(--motion-base) var(--ease-premium), box-shadow var(--motion-base) var(--ease-premium);
         }
 
-        /* European Architectural Hero */
+        .nav-cta:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent-line);
+        }
+
+        /* Hero */
         .hero {
-            min-height: 85vh;
+            min-height: 88vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 8rem 3rem 4.5rem 3rem;
-            max-width: 900px;
+            padding: 8rem 3rem 3.5rem;
+            max-width: 960px;
             margin: 0 auto;
-            position: relative;
         }
 
         .status {
@@ -210,16 +282,10 @@ const BOOKING_FALLBACK_MAILTO =
             margin-bottom: 2.2rem;
             padding: 0.4rem 1rem;
             border-radius: 30px;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--surface);
             border: 1px solid var(--border);
-            box-shadow: 0 2px 14px rgba(15, 23, 42, 0.03);
+            box-shadow: var(--shadow-subtle);
             width: fit-content;
-            transition: all 0.3s ease;
-        }
-
-        .status:hover {
-            border-color: rgba(0, 212, 255, 0.45);
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.12);
         }
 
         .status-dot {
@@ -235,236 +301,155 @@ const BOOKING_FALLBACK_MAILTO =
         .status-dot::after {
             content: '';
             position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
+            inset: -3px;
             border-radius: 50%;
             border: 1.5px solid var(--accent);
-            opacity: 0.5;
-        }
-
-        .project-live .status-dot::after {
             opacity: 0.7;
-            animation: pulse-ring-once 2.2s var(--ease-premium) 1;
+            animation: pulse-ring 2.4s var(--ease-premium) 2;
         }
 
-        @keyframes pulse-ring-once {
+        @keyframes pulse-ring {
             0% { transform: scale(0.85); opacity: 0.85; }
             100% { transform: scale(2.2); opacity: 0; }
         }
 
         .status-text {
-            font-family: var(--sans);
-            font-size: 0.76rem;
+            font-size: 0.78rem;
             color: var(--text);
             font-weight: 500;
             letter-spacing: 0.02em;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
         }
 
-        .status-text strong,
-        .status-offer {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .status-offer {
-            white-space: nowrap;
-        }
-
-        .status-text span.dot-sep {
-            color: var(--accent);
-            font-size: 0.6rem;
-            opacity: 0.8;
-        }
+        .status-text .sep { color: var(--accent-ink); margin: 0 0.35rem; }
 
         .hero h1 {
             font-family: var(--serif);
-            font-size: clamp(2.8rem, 5.8vw, 4.4rem);
+            font-size: clamp(2.7rem, 6.2vw, 4.8rem);
             font-weight: 400;
-            line-height: 1.12;
-            margin-bottom: 2rem;
+            line-height: 1.08;
+            margin-bottom: 1.8rem;
             letter-spacing: -0.02em;
-            color: var(--text);
         }
 
         .hero h1 em {
-            font-family: var(--serif);
             font-style: italic;
-            color: var(--text);
-            font-weight: 400;
-            background: linear-gradient(120deg, transparent 0%, rgba(0, 212, 255, 0.15) 100%);
-            padding: 0 0.4rem;
+            background: linear-gradient(120deg, transparent 0%, rgba(0, 212, 255, 0.18) 100%);
+            padding: 0 0.3rem;
             border-bottom: 2px solid var(--accent);
         }
 
-        .hero p {
-            font-size: 1.18rem;
+        .hero-lede {
+            font-size: 1.2rem;
             color: var(--text-soft);
             line-height: 1.7;
-            margin-bottom: 3.2rem;
-            max-width: 660px;
-            font-weight: 300;
+            margin-bottom: 2.8rem;
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.6rem;
+            align-items: center;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 0.6rem;
             font-size: 0.95rem;
-            font-family: var(--sans);
             letter-spacing: 0.01em;
-            color: #ffffff;
-            background: #0f172a;
+            color: var(--btn-text);
+            background: var(--btn-bg);
             text-decoration: none;
             font-weight: 500;
-            padding: 14px 22px;
-            min-height: 44px;
+            padding: 14px 24px;
+            min-height: 48px;
             border-radius: 14px;
-            border: 1px solid #0f172a;
+            border: 1px solid var(--btn-bg);
+            cursor: pointer;
+            font-family: var(--sans);
             transition:
                 transform var(--motion-base) var(--ease-premium),
                 box-shadow var(--motion-base) var(--ease-premium),
                 border-color var(--motion-base) var(--ease-premium);
-            max-width: 480px;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .btn-label-short {
-            display: none;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
             border-color: var(--accent);
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.14), 0 0 0 1px var(--accent-line);
         }
 
-        .btn-primary:focus-visible {
-            outline: none;
-            transform: translateY(-1px);
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.35), 0 6px 20px rgba(15, 23, 42, 0.1);
-        }
+        .btn-label-short { display: none; }
 
-        .hero-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-            align-items: flex-start;
-            width: 100%;
-            max-width: 480px;
-        }
-
-        .hero-secondary {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-family: var(--sans);
-            letter-spacing: 0.01em;
-            transition: color 0.3s ease;
-            padding: 0.25rem 0;
-        }
-
-        .hero-secondary:hover {
+        .text-link {
+            font-size: 0.92rem;
             color: var(--text-soft);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: color var(--motion-base), border-color var(--motion-base);
         }
+
+        .text-link:hover { color: var(--text); border-color: var(--accent); }
 
         .trust-line {
-            margin-top: 2.4rem;
-            font-size: 0.82rem;
+            margin-top: 2.6rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-family: var(--mono);
             letter-spacing: 0.06em;
         }
 
-        .offer-strip {
-            padding: 1.5rem 4rem 3rem;
+        /* Proof strip */
+        .proof {
             max-width: 1040px;
             margin: 0 auto;
+            padding: 0 4rem 2rem;
         }
 
-        .offer-meta {
-            font-size: 0.78rem;
-            font-family: var(--mono);
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1.6rem;
-            font-weight: 500;
-        }
-
-        .offer-who,
-        .offer-after {
-            margin-top: 1.6rem;
-            padding-top: 1.4rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.88rem;
-            color: var(--text-soft);
-            line-height: 1.6;
-        }
-
-        .offer-who strong,
-        .offer-after strong {
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        .grid-1col {
+        .proof-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            max-width: 640px;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--surface);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
         }
 
-        .project-links {
-            margin-top: 0.6rem;
-            margin-bottom: 0.6rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+        .proof-item {
+            padding: 1.6rem 1.6rem 1.4rem;
+            border-right: 1px solid var(--border);
         }
 
-        .project-links a {
+        .proof-item:last-child { border-right: none; }
+
+        .proof-num {
+            font-family: var(--serif);
+            font-size: 2.4rem;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            display: block;
+            margin-bottom: 0.55rem;
+        }
+
+        .proof-num small {
+            font-size: 1.2rem;
+            color: var(--accent-ink);
+            margin-left: 0.1rem;
+        }
+
+        .proof-label {
             font-size: 0.84rem;
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            font-weight: 500;
-        }
-
-        .project-live {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            font-size: 0.72rem;
             color: var(--text-soft);
-            margin-top: 0.5rem;
+            line-height: 1.45;
+            display: block;
         }
 
-        .project-live .status-dot {
-            width: 5px;
-            height: 5px;
-        }
-
-        .contact-cta-wrap {
-            margin-bottom: 1.6rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.85rem;
-            width: 100%;
-        }
-
-        .contact-cta-wrap .btn-primary {
-            width: auto;
-            min-width: min(100%, 480px);
-        }
-
-        /* Avant-Garde European Section Spacing & Widths */
+        /* Sections */
         section {
             padding: 6rem 4rem;
             max-width: 1040px;
@@ -474,10 +459,10 @@ const BOOKING_FALLBACK_MAILTO =
         .section-title {
             font-family: var(--mono);
             font-size: 0.8rem;
-            color: var(--accent);
+            color: var(--accent-ink);
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            margin-bottom: 3.8rem;
+            margin-bottom: 1.4rem;
             display: flex;
             align-items: center;
             gap: 1.2rem;
@@ -488,7 +473,6 @@ const BOOKING_FALLBACK_MAILTO =
             content: '0' attr(data-step);
             color: var(--text-muted);
             font-size: 0.78rem;
-            font-family: var(--mono);
         }
 
         .section-title::after {
@@ -499,82 +483,373 @@ const BOOKING_FALLBACK_MAILTO =
             opacity: 0.6;
         }
 
-        /* Focus Grid - Avant-Garde Minimal Cards */
-        .grid-2col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.2rem;
+        .section-heading {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.9rem;
+            max-width: 720px;
         }
 
-        .focus-block {
-            background: #ffffff;
+        .section-intro {
+            font-size: 1.04rem;
+            color: var(--text-soft);
+            max-width: 620px;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2.6rem 2.2rem;
-            box-shadow: 0 2px 12px rgba(15, 23, 42, 0.02);
+            border-radius: 16px;
+            box-shadow: var(--shadow-subtle);
             transition:
                 border-color var(--motion-base) var(--ease-premium),
-                box-shadow var(--motion-base) var(--ease-premium);
-            position: relative;
+                box-shadow var(--motion-base) var(--ease-premium),
+                transform var(--motion-base) var(--ease-premium);
         }
 
-        .focus-block:hover {
-            border-color: rgba(0, 212, 255, 0.35);
-            box-shadow: 0 6px 24px rgba(0, 212, 255, 0.06);
+        .card:hover {
+            border-color: var(--accent-line);
+            box-shadow: var(--shadow-hover);
         }
 
-        .focus-block h3 {
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+        }
+
+        .service {
+            padding: 2.4rem 2.2rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-kicker {
+            font-size: 0.74rem;
+            font-family: var(--mono);
+            color: var(--accent-ink);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .service h3 {
             font-family: var(--serif);
-            font-size: 1.45rem;
+            font-size: 1.9rem;
             font-weight: 400;
             letter-spacing: -0.01em;
+            line-height: 1.15;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-lede {
+            font-size: 0.96rem;
+            color: var(--text-soft);
             margin-bottom: 1.6rem;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .focus-block h3::after {
-            content: '';
+        .service-list-label {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.8rem;
         }
 
-        .focus-list {
+        .check-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1.4rem;
+            gap: 0.7rem;
+            margin-bottom: 1.8rem;
         }
 
-        .focus-list li strong {
-            display: block;
-            font-weight: 500;
-            font-size: 0.96rem;
+        .check-list li {
+            font-size: 0.92rem;
             color: var(--text);
-            margin-bottom: 0.25rem;
+            padding-left: 1.5rem;
             position: relative;
-            padding-left: 0.9rem;
+            line-height: 1.55;
         }
 
-        .focus-list li strong::before {
+        .check-list li::before {
+            content: '';
+            position: absolute;
+            left: 0.1rem;
+            top: 0.55rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent);
+        }
+
+        .check-list li span { color: var(--text-soft); }
+
+        .service-foot {
+            margin-top: auto;
+            padding-top: 1.3rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.86rem;
+            color: var(--text-soft);
+        }
+
+        .service-foot a {
+            color: var(--accent-ink);
+            text-underline-offset: 3px;
+        }
+
+        .services-note {
+            margin-top: 1.8rem;
+            font-size: 0.92rem;
+            color: var(--text-soft);
+        }
+
+        /* Sprint timeline */
+        .timeline {
+            margin-top: 4.5rem;
+        }
+
+        .timeline-title {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 1.8rem;
+        }
+
+        .timeline-steps {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), var(--border) 70%);
+        }
+
+        .timeline-steps li {
+            position: relative;
+            padding: 2.2rem 1.4rem 0 0;
+        }
+
+        .timeline-steps li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1.5px solid var(--accent);
+        }
+
+        .timeline-when {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--accent-ink);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        .timeline-steps h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+        }
+
+        .timeline-steps p {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            line-height: 1.55;
+        }
+
+        /* Readiness check */
+        .check-wrap {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 1.6rem;
+            align-items: start;
+        }
+
+        .check-form {
+            padding: 1rem 2rem;
+        }
+
+        .q {
+            border: none;
+            padding: 1.15rem 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.8rem 1.4rem;
+            align-items: center;
+        }
+
+        .q:last-of-type { border-bottom: none; }
+
+        .q legend {
+            float: left;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.45;
+            padding: 0;
+        }
+
+        .q legend small {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .seg {
+            display: inline-flex;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--surface-soft);
+        }
+
+        .seg input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .seg label {
+            font-size: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            min-height: 36px;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-soft);
+            white-space: nowrap;
+            border-right: 1px solid var(--border);
+            transition: background var(--motion-base), color var(--motion-base);
+            user-select: none;
+        }
+
+        .seg label:last-of-type { border-right: none; }
+
+        .seg label:hover { color: var(--text); }
+
+        .seg input:checked + label {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+        }
+
+        .seg input:focus-visible + label {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px;
+        }
+
+        .result {
+            padding: 2rem;
+            position: sticky;
+            top: 96px;
+        }
+
+        .result-score {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.9rem;
+        }
+
+        .meter {
+            height: 6px;
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 1.4rem;
+        }
+
+        .meter span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.5), var(--accent));
+            transition: width 0.45s var(--ease-premium);
+        }
+
+        .result h3 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.7rem;
+        }
+
+        .result p {
+            font-size: 0.92rem;
+            color: var(--text-soft);
+            margin-bottom: 1rem;
+        }
+
+        .gap-list {
+            list-style: none;
+            margin: 0 0 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .gap-list li {
+            font-size: 0.86rem;
+            color: var(--text-soft);
+            padding-left: 1.1rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .gap-list li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 0.6rem;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
+            top: 0.55rem;
+            width: 6px;
+            height: 1.5px;
             background: var(--accent);
         }
 
-        .focus-list li p {
-            font-size: 0.88rem;
-            color: var(--text-soft);
-            line-height: 1.6;
-            padding-left: 0.9rem;
+        .gap-list li strong { color: var(--text); font-weight: 500; }
+
+        .result .btn-primary { width: 100%; }
+
+        .result-reset {
+            margin-top: 0.9rem;
+            background: none;
+            border: none;
+            font-family: var(--sans);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
-        /* Selected Projects Showcase Cards - Minimal Architectural Layout */
+        /* Work */
         .projects-list {
             display: flex;
             flex-direction: column;
@@ -582,27 +857,15 @@ const BOOKING_FALLBACK_MAILTO =
         }
 
         .project-card {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem 2.8rem;
+            padding: 2.4rem 2.6rem;
             display: grid;
-            grid-template-columns: 1.3fr 2fr;
-            gap: 3rem;
-            transition:
-                border-color var(--motion-base) var(--ease-premium),
-                box-shadow var(--motion-base) var(--ease-premium),
-                transform var(--motion-base) var(--ease-premium);
-            box-shadow: 0 2px 12px rgba(15, 23, 42, 0.02);
+            grid-template-columns: 1.2fr 2fr;
+            gap: 2.8rem;
             position: relative;
             overflow: hidden;
         }
 
-        .project-card:hover {
-            border-color: rgba(0, 212, 255, 0.35);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(0, 212, 255, 0.06), 0 2px 8px rgba(15, 23, 42, 0.03);
-        }
+        .project-card:hover { transform: translateY(-2px); }
 
         .project-card::before {
             content: '';
@@ -616,38 +879,77 @@ const BOOKING_FALLBACK_MAILTO =
             transition: opacity var(--motion-base) var(--ease-premium);
         }
 
-        .project-card:hover::before {
-            opacity: 1;
-        }
+        .project-card:hover::before,
+        .project-card.featured::before { opacity: 1; }
 
         .project-meta h3 {
             font-family: var(--serif);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: -0.01em;
-            margin-bottom: 0.6rem;
-            line-height: 1.3;
+            margin-bottom: 0.7rem;
+            line-height: 1.25;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            align-items: center;
         }
 
         .project-tag {
-            font-size: 0.72rem;
-            font-family: var(--sans);
-            color: var(--accent);
+            font-size: 0.7rem;
+            color: var(--accent-ink);
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-weight: 500;
-            background: rgba(0, 212, 255, 0.08);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 0.25rem 0.7rem;
+            background: var(--accent-wash);
+            border: 1px solid rgba(0, 212, 255, 0.22);
+            padding: 0.22rem 0.65rem;
             border-radius: 20px;
             display: inline-block;
         }
 
+        .project-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            font-weight: 500;
+        }
+
+        .project-live .status-dot { width: 6px; height: 6px; }
+
         .project-desc p {
-            font-size: 0.94rem;
+            font-size: 0.95rem;
             color: var(--text-soft);
             line-height: 1.7;
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .project-desc p strong { color: var(--text); font-weight: 500; }
+
+        .project-note {
+            font-size: 0.86rem !important;
+            padding-left: 0.9rem;
+            border-left: 2px solid var(--accent-line);
+        }
+
+        .project-links {
+            margin: 0.2rem 0 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.1rem;
+        }
+
+        .project-links a {
+            font-size: 0.86rem;
+            color: var(--accent-ink);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 500;
         }
 
         .project-tech {
@@ -657,66 +959,202 @@ const BOOKING_FALLBACK_MAILTO =
             letter-spacing: -0.01em;
         }
 
-        /* Approach Grid */
+        .more-work {
+            margin-top: 2.6rem;
+        }
+
+        .more-work h3 {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            font-family: var(--mono);
+        }
+
+        .more-list {
+            list-style: none;
+        }
+
+        .more-list li {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr auto;
+            gap: 1.6rem;
+            padding: 1.05rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: baseline;
+        }
+
+        .more-name {
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        .more-desc {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+        }
+
+        .more-link {
+            font-size: 0.82rem;
+            color: var(--accent-ink);
+            white-space: nowrap;
+            text-underline-offset: 3px;
+        }
+
+        .more-link.muted { color: var(--text-muted); text-decoration: none; }
+
+        /* Background / credentials */
+        .bg-intro {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2.6rem;
+            align-items: end;
+        }
+
+        .bg-intro p {
+            font-size: 1.04rem;
+            color: var(--text-soft);
+        }
+
+        .bg-langs {
+            font-size: 0.86rem;
+            color: var(--text-soft);
+            border-left: 2px solid var(--accent-line);
+            padding-left: 1rem;
+        }
+
+        .bg-langs strong { color: var(--text); font-weight: 500; }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.1rem;
+        }
+
+        .cred {
+            padding: 1.6rem 1.6rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .cred-type {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-ink);
+            font-weight: 500;
+        }
+
+        .cred h4 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.25;
+        }
+
+        .cred p {
+            font-size: 0.84rem;
+            color: var(--text-soft);
+            line-height: 1.5;
+        }
+
+        .cred a {
+            font-size: 0.82rem;
+            color: var(--accent-ink);
+            text-underline-offset: 3px;
+            margin-top: 0.3rem;
+        }
+
+        .cred.wide { grid-column: span 2; }
+
+        /* Approach */
         .approach-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.8rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.1rem;
         }
 
         .approach-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.2rem;
-            display: flex;
-            gap: 1.4rem;
-            box-shadow: var(--shadow-subtle);
-            transition:
-                border-color var(--motion-base) var(--ease-premium),
-                box-shadow var(--motion-base) var(--ease-premium),
-                transform var(--motion-base) var(--ease-premium);
-        }
-
-        .approach-card:hover {
-            border-color: rgba(0, 212, 255, 0.4);
-            box-shadow: 0 10px 28px rgba(0, 212, 255, 0.08);
-            transform: translateY(-2px);
+            padding: 1.7rem 1.5rem;
         }
 
         .approach-num {
-            font-size: 0.85rem;
-            color: var(--accent);
+            font-size: 0.8rem;
+            color: var(--accent-ink);
             font-family: var(--mono);
-            padding-top: 0.1rem;
             font-weight: 600;
+            display: block;
+            margin-bottom: 0.8rem;
         }
 
         .approach-card h4 {
             font-family: var(--serif);
             font-size: 1.25rem;
             font-weight: 400;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
         }
 
         .approach-card p {
-            font-size: 0.9rem;
+            font-size: 0.87rem;
             color: var(--text-soft);
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
-        /* Contact Section - Generous High-End European Framing */
+        /* FAQ */
+        .faq {
+            max-width: 760px;
+        }
+
+        .faq details {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.25rem 2.5rem 1.25rem 0;
+            font-size: 1.02rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .faq summary::-webkit-details-marker { display: none; }
+
+        .faq summary::after {
+            content: '+';
+            position: absolute;
+            right: 0.3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            color: var(--accent-ink);
+            transition: transform var(--motion-base) var(--ease-premium);
+        }
+
+        .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+
+        .faq details p {
+            font-size: 0.94rem;
+            color: var(--text-soft);
+            padding: 0 2.5rem 1.4rem 0;
+        }
+
+        /* Contact */
         .contact {
             padding: 4.5rem 4rem;
             text-align: center;
-            background: linear-gradient(145deg, #ffffff 0%, rgba(240, 249, 255, 0.7) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: var(--contact-bg);
+            border: 1px solid var(--accent-line);
             border-radius: 28px;
             box-shadow: 0 16px 50px rgba(0, 212, 255, 0.08);
-            backdrop-filter: blur(16px);
             max-width: 1040px;
-            margin: 3.75rem auto;
+            margin: 3rem auto 3.75rem;
             position: relative;
             overflow: hidden;
         }
@@ -731,7 +1169,6 @@ const BOOKING_FALLBACK_MAILTO =
             height: 1.5px;
             background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
             box-shadow: 0 0 12px var(--accent-glow);
-            opacity: 0.85;
         }
 
         .contact h2 {
@@ -739,30 +1176,26 @@ const BOOKING_FALLBACK_MAILTO =
             font-size: clamp(2.5rem, 5vw, 3.6rem);
             font-weight: 400;
             letter-spacing: -0.02em;
-            margin-bottom: 1.4rem;
-            color: var(--text);
+            margin-bottom: 1.2rem;
         }
 
-        .contact p {
-            font-size: 1.12rem;
+        .contact > p {
+            font-size: 1.1rem;
             color: var(--text-soft);
-            margin-bottom: 2.8rem;
+            margin: 0 auto 2.4rem;
             max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
         }
 
         .contact-links {
             display: flex;
             flex-direction: column;
-            gap: 2.2rem;
+            gap: 2rem;
             align-items: center;
-            justify-content: center;
         }
 
+        .contact .btn-primary { min-width: min(100%, 420px); }
+
         .email-artistic-container {
-            position: relative;
             display: inline-flex;
             flex-direction: column;
             align-items: center;
@@ -770,15 +1203,14 @@ const BOOKING_FALLBACK_MAILTO =
 
         .contact-email {
             font-family: var(--serif);
-            font-size: clamp(1.8rem, 4vw, 2.7rem);
-            font-weight: 400;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
             color: var(--text);
             text-decoration: none;
             position: relative;
             padding-bottom: 0.4rem;
-            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             letter-spacing: -0.02em;
-            cursor: pointer;
+            transition: color 0.4s var(--ease-premium);
+            overflow-wrap: anywhere;
         }
 
         .contact-email::after {
@@ -790,74 +1222,57 @@ const BOOKING_FALLBACK_MAILTO =
             width: 35%;
             height: 1.5px;
             background: var(--text);
-            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
             opacity: 0.25;
+            transition: all 0.45s var(--ease-premium);
         }
 
-        .contact-email:hover {
-            color: var(--accent);
-        }
+        .contact-email:hover { color: var(--accent-ink); }
 
         .contact-email:hover::after {
             width: 100%;
             background: var(--accent);
             opacity: 1;
-            box-shadow: 0 0 16px var(--accent-glow);
         }
 
         .email-copy-hint {
-            font-family: var(--sans);
             font-size: 0.78rem;
             color: var(--text-muted);
             letter-spacing: 0.08em;
             text-transform: uppercase;
             margin-top: 0.6rem;
-            transition: all 0.3s ease;
-            opacity: 0.85;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .contact-email:hover + .email-copy-hint {
-            color: var(--accent);
-            opacity: 1;
-            letter-spacing: 0.12em;
         }
 
         .social-nav {
             display: flex;
-            gap: 2.2rem;
+            gap: 1.4rem;
             align-items: center;
-            margin-top: 0.8rem;
         }
 
         .social-link {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-family: var(--mono);
             color: var(--text-soft);
             text-decoration: none;
-            transition: all 0.3s;
             font-weight: 500;
             padding: 0.5rem 1rem;
             border-radius: 8px;
             border: 1px solid transparent;
+            transition: all 0.3s;
         }
 
         .social-link:hover {
-            color: var(--accent);
+            color: var(--accent-ink);
             border-color: rgba(0, 212, 255, 0.2);
-            background: rgba(0, 212, 255, 0.04);
-            transform: translateY(-2px);
+            background: var(--accent-wash);
         }
 
-        /* Footer */
         footer {
             padding: 2.25rem 4rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
+            gap: 1rem;
+            font-size: 0.82rem;
             font-family: var(--mono);
             color: var(--text-muted);
             border-top: 1px solid var(--border);
@@ -865,341 +1280,571 @@ const BOOKING_FALLBACK_MAILTO =
             margin: 0 auto;
         }
 
-        /* Reveal Animation */
+        /* Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(14px);
-            transition:
-                opacity 0.32s var(--ease-premium),
-                transform 0.32s var(--ease-premium);
+            transition: opacity 0.32s var(--ease-premium), transform 0.32s var(--ease-premium);
             transition-delay: var(--reveal-delay, 0ms);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: none; }
 
-        @media (max-width: 480px) {
-            .btn-label-full {
-                display: none;
-            }
-
-            .btn-label-short {
-                display: inline;
-            }
-        }
+        .no-js .reveal { opacity: 1; transform: none; }
 
         @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-
-            body::before {
-                background:
-                    radial-gradient(1000px circle at 85% 15%, rgba(0, 212, 255, 0.08), transparent 70%),
-                    radial-gradient(1200px circle at 15% 85%, rgba(0, 180, 216, 0.05), transparent 75%),
-                    radial-gradient(600px circle at 50% 50%, rgba(255, 255, 255, 0.5), transparent 85%);
-            }
-
-            .reveal,
-            .reveal.active {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-
-            .btn-primary:hover,
-            .btn-primary:focus-visible,
-            .project-card:hover,
-            .approach-card:hover,
-            .social-link:hover {
-                transform: none !important;
-            }
+            .reveal, .reveal.active { opacity: 1 !important; transform: none !important; }
+            .btn-primary:hover, .card:hover, .project-card:hover { transform: none !important; }
         }
 
-        /* Responsive Framing */
+        /* Responsive */
+        @media (max-width: 960px) {
+            .check-wrap { grid-template-columns: 1fr; }
+            .result { position: static; }
+            .approach-grid { grid-template-columns: 1fr 1fr; }
+            .cred-grid { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 768px) {
             nav {
-                padding: 0.85rem 1.25rem;
+                padding: 0.75rem 1rem;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 0.65rem;
+                gap: 0.2rem;
             }
 
-            .logo {
-                font-size: 1.05rem;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
+            .logo { font-size: 1.1rem; }
+
+            .nav-right { width: 100%; }
 
             .nav-links {
-                gap: 0.75rem 1.25rem;
+                gap: 1.1rem;
                 flex-wrap: wrap;
-                width: 100%;
             }
 
-            .nav-link {
-                font-size: 0.82rem;
-                min-height: 44px;
-            }
+            .nav-link { font-size: 0.82rem; }
+
+            .nav-cta { display: none; }
+
+            html { scroll-padding-top: 110px; }
 
             .hero {
-                padding: 7rem 1.5rem 3.5rem 1.5rem;
+                padding: 8rem 1rem 2.5rem;
                 min-height: auto;
             }
 
-            .status {
-                padding: 0.45rem 0.95rem;
-                max-width: 100%;
-            }
+            .hero-lede { font-size: 1.08rem; }
 
-            .status-text {
-                font-size: 0.74rem;
-                flex-wrap: wrap;
-                line-height: 1.45;
-            }
+            .proof { padding: 0 1rem 1rem; }
 
-            .email-copy-hint {
-                font-size: 0.8125rem;
-            }
+            .proof-grid { grid-template-columns: 1fr 1fr; }
 
-            section {
-                padding: 3.75rem 1.75rem;
-            }
+            .proof-item:nth-child(2) { border-right: none; }
 
-            .contact {
-                padding: 3rem 1.5rem;
-                margin: 2.25rem 1.25rem;
-            }
+            .proof-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
 
-            .grid-2col, .approach-grid {
+            .proof-item { padding: 1.3rem 1.1rem; }
+
+            .proof-num { font-size: 2rem; }
+
+            section { padding: 4rem 1rem; }
+
+            .services-grid { grid-template-columns: 1fr; }
+
+            .service { padding: 1.9rem 1.4rem; }
+
+            .timeline-steps {
                 grid-template-columns: 1fr;
-                gap: 1.25rem;
+                gap: 1.6rem;
+                padding-left: 1.8rem;
             }
+
+            .timeline-steps::before {
+                top: 0;
+                bottom: 0;
+                left: 7px;
+                right: auto;
+                width: 1px;
+                height: auto;
+                background: linear-gradient(180deg, var(--accent), var(--border) 80%);
+            }
+
+            .timeline-steps li { padding: 0; }
+
+            .timeline-steps li::before { left: -1.8rem; top: 0.15rem; }
+
+            .check-form { padding: 0.4rem 1.2rem; }
+
+            .q { grid-template-columns: 1fr; }
+
+            .seg { width: 100%; }
+
+            .seg label { flex: 1; justify-content: center; }
+
+            .result { padding: 1.6rem 1.4rem; }
 
             .project-card {
                 grid-template-columns: 1fr;
-                gap: 1.2rem;
-                padding: 1.8rem 1.5rem;
+                gap: 1.1rem;
+                padding: 1.8rem 1.4rem;
             }
 
-            .contact-links {
+            .more-list li {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+
+            .bg-intro { grid-template-columns: 1fr; gap: 1.4rem; }
+
+            .cred-grid { grid-template-columns: 1fr; }
+
+            .cred.wide { grid-column: auto; }
+
+            .approach-grid { grid-template-columns: 1fr; }
+
+            .contact {
+                padding: 3rem 1.25rem;
+                margin: 2rem 1rem;
+            }
+
+            .contact .btn-primary { width: 100%; }
+
+            .social-nav { flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+
+            footer {
+                padding: 2rem 1rem;
                 flex-direction: column;
-                gap: 1.2rem;
+                text-align: center;
             }
+        }
 
-            .offer-strip {
-                padding: 1rem 1.75rem 2.25rem;
-            }
-
-            .btn-primary {
-                width: 100%;
-            }
+        @media (max-width: 420px) {
+            .btn-label-full { display: none; }
+            .btn-label-short { display: inline; }
+            .nav-links { gap: 0.9rem; }
         }
     </style>
 </head>
-<body>
-    <nav>
-        <div class="logo">Kaveh Momeni</div>
-        <div class="nav-links">
-            <a href="#offer" class="nav-link">Offer</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#approach" class="nav-link">Approach</a>
-            <a href="#contact" class="nav-link">Contact</a>
+<body class="no-js">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <nav aria-label="Primary">
+        <a href="#top" class="logo">Kaveh Momeni</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#readiness" class="nav-link">Check</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#background" class="nav-link">Background</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <a href="#contact" class="nav-cta js-booking">Book a fit call</a>
         </div>
     </nav>
 
-    <section class="hero">
+    <main id="main">
+    <section class="hero" id="top">
         <div class="status">
-            <span class="status-dot"></span>
-            <span class="status-text">Available for <strong class="status-offer">a 2-week Architecture Sprint</strong></span>
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-text">Taking on consulting work<span class="sep" aria-hidden="true">·</span>Berlin and remote</span>
         </div>
-        <h1>Bridging AI Systems, Complex Workflows & Operational Execution</h1>
-        <p>I design the architecture that turns a messy workflow into a production-ready system. Your team leaves able to build.</p>
+        <h1>Turning AI and data work into <em>shipped</em> products.</h1>
+        <p class="hero-lede">Data science and AI project management for teams that need one workflow to reach production. I map it, design the system around it, and leave your team able to build and run it.</p>
         <div class="hero-actions">
-            <a href="#" class="btn-primary" id="heroBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
+            <a href="#contact" class="btn-primary js-booking"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
+            <a href="#work" class="text-link">See selected work</a>
         </div>
-        <p class="trust-line">Berlin · PMP® · M.Sc. Data Science</p>
+        <p class="trust-line">PMP® · M.Sc. Data Science · Berlin</p>
     </section>
 
-    <section class="offer-strip" id="offer">
-        <div class="focus-block reveal">
-            <h3>Architecture Sprint</h3>
-            <p class="offer-meta">2 weeks · one workflow</p>
-            <ul class="focus-list">
-                <li>
-                    <strong>Map the operational constraint</strong>
-                    <p>Identify the real bottleneck, not the demo, before any architecture decisions.</p>
-                </li>
-                <li>
-                    <strong>Define the agent/system + governance path</strong>
-                    <p>Shape the agentic or data system design with clear ownership, guardrails, and delivery boundaries.</p>
-                </li>
-                <li>
-                    <strong>Deliver a build-ready blueprint</strong>
-                    <p>Hand off a blueprint your team can execute: scoped, documented, and production-oriented.</p>
-                </li>
-            </ul>
-            <p class="offer-who"><strong>Who:</strong> Teams with AI demos or messy ops that need one workflow in production.</p>
-            <p class="offer-after"><strong>After the sprint:</strong> optional scoped build or advisory. Not an open-ended anything-AI retainer.</p>
-        </div>
-    </section>
-
-    <section id="focus">
-        <p class="section-title" data-step="1">Overview</p>
-        <div class="grid-1col">
-            <div class="focus-block reveal">
-                <h3>What I Do</h3>
-                <ul class="focus-list">
-                    <li>
-                        <strong>AI & Agentic Systems Architecture</strong>
-                        <p>Multi-agent and automation architectures engineered for long-term stability.</p>
-                    </li>
-                    <li>
-                        <strong>Technical & Operational Translation</strong>
-                        <p>Bridge ML engineering, product, and delivery constraints (PMP®).</p>
-                    </li>
-                    <li>
-                        <strong>Complex Workflow Automation</strong>
-                        <p>Modular pipelines that make unstructured ops predictable.</p>
-                    </li>
-                </ul>
+    <div class="proof reveal" aria-label="At a glance">
+        <div class="proof-grid">
+            <div class="proof-item">
+                <span class="proof-num">5<small>+</small></span>
+                <span class="proof-label">years of production data science and ML</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-num">15<small>+</small></span>
+                <span class="proof-label">years of project delivery across industries</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-num">5</span>
+                <span class="proof-label">AI systems shipped into one firm's daily operations</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-num">30<small>h</small></span>
+                <span class="proof-label">AI in project management course, designed and taught</span>
             </div>
         </div>
+    </div>
+
+    <section id="services">
+        <p class="section-title" data-step="1">Services</p>
+        <h2 class="section-heading">Two ways to work together.</h2>
+        <p class="section-intro">Both are scoped and finite. Each one ends with something your team keeps.</p>
+
+        <div class="services-grid" data-reveal-group>
+            <article class="card service reveal">
+                <p class="service-kicker">2 weeks · one workflow</p>
+                <h3>Architecture Sprint</h3>
+                <p class="service-lede">For teams with an AI demo or a messy manual process that should run in production. We pick one workflow and get it to a plan your team can build.</p>
+                <p class="service-list-label">You leave with</p>
+                <ul class="check-list">
+                    <li>A constraint and stakeholder map <span>of the real bottleneck, not the demo</span></li>
+                    <li>A target architecture <span>with components, data flow, and failure modes</span></li>
+                    <li>A governance path <span>so it is clear who owns and runs it after day 14</span></li>
+                    <li>A build-ready blueprint <span>with sequenced next steps</span></li>
+                </ul>
+                <p class="service-foot">After the sprint: an optional scoped build or advisory. No open-ended retainer.</p>
+            </article>
+
+            <article class="card service reveal">
+                <p class="service-kicker">Workshops · for PMs and PMOs</p>
+                <h3>AI for Project Teams</h3>
+                <p class="service-lede">Hands-on sessions built on the 30-hour course I designed and taught in three rounds. Real cases from engineering and construction operations, adapted to your team.</p>
+                <p class="service-list-label">Topics</p>
+                <ul class="check-list">
+                    <li>Knowledge management <span>and reporting with generative AI</span></li>
+                    <li>Risk prediction <span>and predictive analytics for projects</span></li>
+                    <li>Agentic automation <span>for scheduling and status work</span></li>
+                    <li>What it takes to run a model <span>in production, without the hype</span></li>
+                </ul>
+                <p class="service-foot">Materials from a public round: <a href="https://github.com/kvmmn/aipm-2025-1" target="_blank" rel="noopener">github.com/kvmmn/aipm-2025-1</a></p>
+            </article>
+        </div>
+
+        <p class="services-note">Not sure which one fits? That is what the fit call is for.</p>
+
+        <div class="timeline reveal">
+            <h3 class="timeline-title">How a sprint runs</h3>
+            <ol class="timeline-steps">
+                <li>
+                    <span class="timeline-when">Day 0</span>
+                    <h4>Fit call</h4>
+                    <p>25 minutes. If a sprint is the wrong tool, I will say so before you pay.</p>
+                </li>
+                <li>
+                    <span class="timeline-when">Week 1</span>
+                    <h4>Discovery</h4>
+                    <p>Kickoff with the people who own the work. Constraint mapping and architecture options.</p>
+                </li>
+                <li>
+                    <span class="timeline-when">Week 2</span>
+                    <h4>Design</h4>
+                    <p>The chosen design, governance, and blueprint. A mid-sprint check and a final readout.</p>
+                </li>
+                <li>
+                    <span class="timeline-when">After</span>
+                    <h4>Yours to keep</h4>
+                    <p>Everything lives in a shared doc you keep. Your team builds, or we scope a follow-on.</p>
+                </li>
+            </ol>
+        </div>
     </section>
 
-    <section id="projects">
-        <p class="section-title" data-step="2">Selected Systems & Work</p>
+    <section id="readiness">
+        <p class="section-title" data-step="2">Readiness check</p>
+        <h2 class="section-heading">Is your workflow ready for production?</h2>
+        <p class="section-intro">Six questions I ask on most fit calls. Answer them here first. Nothing is sent or stored.</p>
+
+        <div class="check-wrap">
+            <form class="card check-form" id="readinessForm" aria-label="Production readiness check">
+                <fieldset class="q" data-gap="Name one workflow and its owner. The sprint starts there.">
+                    <legend>Can you name the one workflow, and who owns it today?</legend>
+                    <div class="seg">
+                        <input type="radio" name="q1" id="q1y" value="1"><label for="q1y">Yes</label>
+                        <input type="radio" name="q1" id="q1u" value="0.5"><label for="q1u">Not sure</label>
+                        <input type="radio" name="q1" id="q1n" value="0"><label for="q1n">No</label>
+                    </div>
+                </fieldset>
+                <fieldset class="q" data-gap="Define done as a number: hours saved, error rate, or lead time.">
+                    <legend>Do you know what “done” looks like, as a number?<small>Hours saved, error rate, lead time</small></legend>
+                    <div class="seg">
+                        <input type="radio" name="q2" id="q2y" value="1"><label for="q2y">Yes</label>
+                        <input type="radio" name="q2" id="q2u" value="0.5"><label for="q2u">Not sure</label>
+                        <input type="radio" name="q2" id="q2n" value="0"><label for="q2n">No</label>
+                    </div>
+                </fieldset>
+                <fieldset class="q" data-gap="Check data access early: what exists, where, and who may share it.">
+                    <legend>Is the data it needs reachable, and is someone allowed to share it?</legend>
+                    <div class="seg">
+                        <input type="radio" name="q3" id="q3y" value="1"><label for="q3y">Yes</label>
+                        <input type="radio" name="q3" id="q3u" value="0.5"><label for="q3u">Not sure</label>
+                        <input type="radio" name="q3" id="q3n" value="0"><label for="q3n">No</label>
+                    </div>
+                </fieldset>
+                <fieldset class="q" data-gap="Decide where a person reviews or approves before anything important changes.">
+                    <legend>Does a person review the output before it changes anything important?</legend>
+                    <div class="seg">
+                        <input type="radio" name="q4" id="q4y" value="1"><label for="q4y">Yes</label>
+                        <input type="radio" name="q4" id="q4u" value="0.5"><label for="q4u">Not sure</label>
+                        <input type="radio" name="q4" id="q4n" value="0"><label for="q4n">No</label>
+                    </div>
+                </fieldset>
+                <fieldset class="q" data-gap="Plan for the wrong answer: fallbacks, alerts, and a way back.">
+                    <legend>Is there a plan for when the model or tool is wrong?</legend>
+                    <div class="seg">
+                        <input type="radio" name="q5" id="q5y" value="1"><label for="q5y">Yes</label>
+                        <input type="radio" name="q5" id="q5u" value="0.5"><label for="q5u">Not sure</label>
+                        <input type="radio" name="q5" id="q5n" value="0"><label for="q5n">No</label>
+                    </div>
+                </fieldset>
+                <fieldset class="q" data-gap="Name who runs it after launch, and what they need to do it.">
+                    <legend>Is someone named to run it after launch?</legend>
+                    <div class="seg">
+                        <input type="radio" name="q6" id="q6y" value="1"><label for="q6y">Yes</label>
+                        <input type="radio" name="q6" id="q6u" value="0.5"><label for="q6u">Not sure</label>
+                        <input type="radio" name="q6" id="q6n" value="0"><label for="q6n">No</label>
+                    </div>
+                </fieldset>
+            </form>
+
+            <aside class="card result" id="readinessResult" aria-live="polite">
+                <p class="result-score" id="resultScore">0 of 6 answered</p>
+                <div class="meter" aria-hidden="true"><span id="resultMeter"></span></div>
+                <h3 id="resultTitle">Answer a few questions.</h3>
+                <p id="resultText">Your result and the gaps worth closing will show here as you go.</p>
+                <ul class="gap-list" id="resultGaps" hidden></ul>
+                <a href="#contact" class="btn-primary js-booking" id="resultCta" hidden>Talk it through on a fit call</a>
+                <button type="button" class="result-reset" id="resultReset" hidden>Start over</button>
+            </aside>
+        </div>
+    </section>
+
+    <section id="work">
+        <p class="section-title" data-step="3">Selected work</p>
+        <h2 class="section-heading">Systems that left the demo stage.</h2>
+        <p class="section-intro">Products, production ML, and open-source tools. Each one states how mature it is.</p>
+
         <div class="projects-list" data-reveal-group>
-            <div class="project-card reveal">
+            <article class="card project-card featured reveal">
                 <div class="project-meta">
-                    <h3>Charbot: Production Telegram Ops Coordinator</h3>
-                    <span class="project-tag">Live ops system · Telegram</span>
-                    <span class="project-live"><span class="status-dot"></span> Live</span>
+                    <h3>DISPOTIF</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Product · Human-in-the-loop AI</span>
+                        <span class="project-live"><span class="status-dot" aria-hidden="true"></span>Live demo</span>
+                    </div>
                 </div>
                 <div class="project-desc">
-                    <p>Live Fly-backed Telegram ops bot for Chaharsotoon with speech-act tasking, Neon Postgres, voice, Persian UI. A reference for “build one like this,” not a public SaaS.</p>
+                    <p>Production control for indie film and series teams. It reads a screenplay and turns it into accountable work: <strong>owners, dependencies, blockers, and readiness you can explain</strong>. Automation proposes and people decide. Every suggestion shows its script evidence, and nothing is published silently.</p>
+                    <p>Local-first, so production data stays in the browser. It imports PDF and DOCX with OCR in English, German, and Persian, and has a full Persian right-to-left interface. An optional agent answers plain requests, keeps an audit ledger, and stops for approval before any material change.</p>
+                    <p class="project-note">Testable MVP. Validation with production teams comes next.</p>
+                    <div class="project-links">
+                        <a href="https://dispotif-81ax.vercel.app" target="_blank" rel="noopener">Open the live demo ↗</a>
+                    </div>
+                    <span class="project-tech">Next.js · React · TypeScript · Tesseract OCR · Agent with audit ledger</span>
+                </div>
+            </article>
+
+            <article class="card project-card reveal">
+                <div class="project-meta">
+                    <h3>Project-Risk Detection in Jira</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Production ML · AI project management</span>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    <p>An NLP and gradient-boosting pipeline that scores project risk from unstructured project data and raises explained alerts inside Jira. Risk detection went from <strong>10+ days to under 24 hours</strong>, with <strong>about 80% less manual review</strong>.</p>
+                    <p>One of five production AI systems I designed and shipped at an engineering firm, alongside finance intake, scheduling support, pricing, and procurement decision support.</p>
+                    <span class="project-tech">ParsBERT · XLM-RoBERTa · XGBoost / LightGBM · SHAP · Jira REST and Forge</span>
+                </div>
+            </article>
+
+            <article class="card project-card reveal">
+                <div class="project-meta">
+                    <h3>Charbot</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Live ops system · Telegram</span>
+                        <span class="project-live"><span class="status-dot" aria-hidden="true"></span>Live</span>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    <p>A Telegram coordinator for a small engineering team. It turns messy group talk, text and voice, into defined work with a title, an owner, and a due date, and replies in the same chat. Persian interface, in daily use at Chaharsotoon.</p>
                     <div class="project-links">
                         <a href="https://github.com/kvmmn/charbot" target="_blank" rel="noopener">GitHub ↗</a>
-                        <a href="https://chaharsotoon-charbot.fly.dev" target="_blank" rel="noopener">Health / status ↗</a>
+                        <a href="https://chaharsotoon-charbot.fly.dev/health" target="_blank" rel="noopener">Health check ↗</a>
                     </div>
                     <span class="project-tech">Python · Fly.io · Neon Postgres · Telegram Bot API · Speech</span>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card reveal">
+            <article class="card project-card reveal">
                 <div class="project-meta">
-                    <h3>Dream Print: Open-Source Agent Skill</h3>
-                    <span class="project-tag">Open-source · Architecture spec</span>
-                </div>
-                <div class="project-desc">
-                    <p>An open-source agent skill and specification converting unstructured technical challenges into implementation-ready service architecture blueprints formatted on modular A4 pages.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/kvmmn/agent-skills/tree/main/dreamprint" target="_blank" rel="noopener">View Repository, Install & Use Skill ↗</a>
+                    <h3>Demand Forecasting in Production</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">MLOps · Retail (SnappStore)</span>
                     </div>
-                    <span class="project-tech">Mermaid · Systems Architecture · Agent Skills · Technical Specs</span>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-meta">
-                    <h3>AI-Enhanced PMO & Operational Governance</h3>
-                    <span class="project-tag">Enterprise Operations & AI Workflow</span>
                 </div>
                 <div class="project-desc">
-                    <p>Established an AI-assisted PMO governance model for complex engineering environments with standardized financial tracking, automated risk mitigation, and executive reporting across 60+ active small/mid-scale projects.</p>
-                    <span class="project-tech">PMP® Governance · Agile/Scrum · Automated Risk Logs · Process Optimization</span>
+                    <p>Hybrid ARIMA and LSTM weekly demand forecasting for retail and food-service replenishment. Served as a FastAPI service on Docker and Kubernetes and wired into CRM, order, and POS workflows. <strong>About 12% fewer stock-outs.</strong></p>
+                    <span class="project-tech">Python · ARIMA · LSTM · FastAPI · Docker · Kubernetes · Metabase</span>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card reveal">
+            <article class="card project-card reveal">
                 <div class="project-meta">
-                    <h3>Demand Forecasting in Production (SnappStore)</h3>
-                    <span class="project-tag">MLOps & E-Commerce Infrastructure</span>
+                    <h3>Dream Print</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Open source · Agent skill</span>
+                    </div>
                 </div>
                 <div class="project-desc">
-                    <p>Hybrid ARIMA+LSTM demand forecasting microservice for retail operations, deployed on Docker/Kubernetes with FastAPI, reducing stock-outs by ~12%.</p>
-                    <span class="project-tech">Python · ARIMA · LSTM · FastAPI · Docker · Kubernetes</span>
+                    <p>An open-source agent skill that turns a vague idea or technical problem into a step-by-step service architecture, delivered as Mermaid diagram pages on A4. It interviews you first, then draws.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/kvmmn/agent-skills/tree/main/dreamprint" target="_blank" rel="noopener">Repository and install guide ↗</a>
+                    </div>
+                    <span class="project-tech">Agent Skills · Mermaid · Systems architecture</span>
                 </div>
+            </article>
+        </div>
+
+        <div class="more-work reveal">
+            <h3>More work</h3>
+            <ul class="more-list">
+                <li>
+                    <span class="more-name">PMO and delivery governance</span>
+                    <span class="more-desc">Financial tracking, risk logs, and executive reporting across 60+ engineering projects.</span>
+                    <span class="more-link muted">Client work</span>
+                </li>
+                <li>
+                    <span class="more-name">Numerai tournament pipeline</span>
+                    <span class="more-desc">Quantitative ML with era-aware cross-validation, LightGBM, and automated submission.</span>
+                    <a class="more-link" href="https://github.com/kvmmn/numerai-tournament-bot" target="_blank" rel="noopener">GitHub ↗</a>
+                </li>
+                <li>
+                    <span class="more-name">Big data for energy systems</span>
+                    <span class="more-desc">PySpark on Dataproc proof of concept for energy forecasting. M.Sc. coursework.</span>
+                    <a class="more-link" href="https://github.com/kvmmn/COM7020_BigDataCloudComputing" target="_blank" rel="noopener">GitHub ↗</a>
+                </li>
+                <li>
+                    <span class="more-name">KAV</span>
+                    <span class="more-desc">Early-stage, open-source research orchestrator (v0.1) for hypothesis testing and knowledge synthesis.</span>
+                    <a class="more-link" href="https://github.com/kvmmn/kav" target="_blank" rel="noopener">GitHub ↗</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="background">
+        <p class="section-title" data-step="4">Background</p>
+        <h2 class="section-heading">Delivery first, then data science.</h2>
+        <div class="bg-intro">
+            <p>Before data science, I spent 15+ years leading construction, manufacturing, and digital product delivery. That is where the habits come from: scope it, own it, finish it. Since 2020 I have built and shipped ML systems in forecasting, NLP, pricing, risk, and agent workflows.</p>
+            <p class="bg-langs"><strong>Working languages:</strong> English and Persian. German in progress.</p>
+        </div>
+
+        <div class="cred-grid" data-reveal-group>
+            <div class="card cred reveal">
+                <span class="cred-type">Certification</span>
+                <h4>PMP®</h4>
+                <p>Project Management Institute. Certified since 2016.</p>
+            </div>
+            <div class="card cred reveal">
+                <span class="cred-type">Certification</span>
+                <h4>IPMA Level D</h4>
+                <p>International Project Management Association.</p>
+            </div>
+            <div class="card cred reveal">
+                <span class="cred-type">Education</span>
+                <h4>M.Sc. Data Science</h4>
+                <p>Arden University, Berlin. In progress, expected 2027. B.Sc. in Civil Engineering before that.</p>
             </div>
 
-            <div class="project-card reveal">
-                <div class="project-meta">
-                    <h3>KAV: Research Orchestration Engine</h3>
-                    <span class="project-tag">Agentic Orchestration · v0.1</span>
-                </div>
-                <div class="project-desc">
-                    <p>Early-stage research orchestration engine (Knowledge through Adaptive Validation), v0.1 exploring hypothesis formulation and structured knowledge synthesis. ADR chose Deep Agents over LangGraph/LangChain; SDK uses Pydantic. MIT licensed.</p>
-                    <span class="project-tech">Python · Deep Agents · Pydantic · State Machines · MIT</span>
-                </div>
+            <!--
+                SAP credential slots. Hidden until the certificates are issued.
+                To publish one: remove the `hidden` attribute, set the exact
+                certificate name and issue date, and add the credential link
+                (e.g. the Credly badge URL).
+            -->
+            <div class="card cred reveal" data-credential="sap-developer" hidden>
+                <span class="cred-type">Certification</span>
+                <h4>SAP Certified Developer</h4>
+                <p>SAP. Issued MONTH YEAR.</p>
+                <a href="#" target="_blank" rel="noopener">Verify credential ↗</a>
+            </div>
+            <div class="card cred reveal" data-credential="sap-consultant" hidden>
+                <span class="cred-type">Certification</span>
+                <h4>SAP Certified Consultant</h4>
+                <p>SAP. Issued MONTH YEAR.</p>
+                <a href="#" target="_blank" rel="noopener">Verify credential ↗</a>
             </div>
 
-            <div class="project-card reveal">
-                <div class="project-meta">
-                    <h3>Numerai Quantitative Pipeline</h3>
-                    <span class="project-tag">Quantitative ML · Financial Tournament</span>
-                </div>
-                <div class="project-desc">
-                    <p>End-to-end quantitative ML pipeline for the Numerai global financial tournament with era-aware cross-validation, LightGBM modeling, and financial risk scoring.</p>
-                    <span class="project-tech">Python · LightGBM · Era-Aware CV · Financial Risk Scoring</span>
-                </div>
+            <div class="card cred wide reveal">
+                <span class="cred-type">Research</span>
+                <h4>The Price of Privacy: Federated vs. Centralized LLMs at the Surgical Edge</h4>
+                <p>Journal of Distributed Computing and Systems 9(1), 9 to 17, 2026. Second author. Privacy, latency, and energy trade-offs of fine-tuning LLMs on edge hardware, with data kept local.</p>
+            </div>
+            <div class="card cred reveal">
+                <span class="cred-type">Teaching</span>
+                <h4>AI Applications in Project Management</h4>
+                <p>30-hour course, three rounds. OnAcademy, PMPiran, Idea School.</p>
+                <a href="https://github.com/kvmmn/aipm-2025-1" target="_blank" rel="noopener">Course materials ↗</a>
             </div>
         </div>
     </section>
 
     <section id="approach">
-        <p class="section-title" data-step="3">Methodology</p>
+        <p class="section-title" data-step="5">How I work</p>
         <div class="approach-grid" data-reveal-group>
-            <div class="approach-card reveal">
+            <div class="card approach-card reveal">
                 <span class="approach-num">01</span>
-                <div>
-                    <h4>Problem First</h4>
-                    <p>Uncovering root operational constraints before writing architectural code.</p>
-                </div>
+                <h4>Problem first</h4>
+                <p>Find the real operational constraint before drawing any architecture.</p>
             </div>
-            <div class="approach-card reveal">
+            <div class="card approach-card reveal">
                 <span class="approach-num">02</span>
-                <div>
-                    <h4>Pragmatic Scope</h4>
-                    <p>Feasible, incremental builds designed around actual business realities.</p>
-                </div>
+                <h4>Pragmatic scope</h4>
+                <p>Small, feasible steps that fit how the business actually runs.</p>
             </div>
-            <div class="approach-card reveal">
+            <div class="card approach-card reveal">
                 <span class="approach-num">03</span>
-                <div>
-                    <h4>Modular Design</h4>
-                    <p>Decoupled system components that evolve without cascading dependencies.</p>
-                </div>
+                <h4>People decide</h4>
+                <p>Automation proposes. Review, approval, and an audit trail stay with the team.</p>
             </div>
-            <div class="approach-card reveal">
+            <div class="card approach-card reveal">
                 <span class="approach-num">04</span>
-                <div>
-                    <h4>Knowledge Autonomy</h4>
-                    <p>Clear documentation and system designs that leave engineering teams self-sufficient.</p>
-                </div>
+                <h4>Leave them able</h4>
+                <p>Clear docs and designs, so your team owns the system after I leave.</p>
             </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <p class="section-title" data-step="6">Questions</p>
+        <div class="faq">
+            <details>
+                <summary>What does it cost?</summary>
+                <p>The sprint is a fixed scope at a fixed price. I quote it after the fit call, once the workflow and its complexity are clear. Workshops are priced by format and group size.</p>
+            </details>
+            <details>
+                <summary>Do you also build the system?</summary>
+                <p>Sometimes. After the blueprint, a scoped build or advisory is possible and priced separately. Many teams build it themselves, and the blueprint is written for that.</p>
+            </details>
+            <details>
+                <summary>Remote or on site?</summary>
+                <p>Berlin based and remote friendly. On site in Berlin when it helps the work.</p>
+            </details>
+            <details>
+                <summary>What if a sprint is the wrong tool?</summary>
+                <p>Then I will say so on the fit call, before you pay anything. Sometimes the right first step is a workshop, or a smaller fix.</p>
+            </details>
         </div>
     </section>
 
     <section class="contact" id="contact">
         <h2>Book a fit call</h2>
-        <p>If you have one workflow that should reach production, start with a short fit call.</p>
+        <p>If you have one workflow that should reach production, or a team that wants to use AI well, start with 25 minutes.</p>
         <div class="contact-links">
-            <div class="contact-cta-wrap">
-                <a href="#" class="btn-primary" id="contactBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
-            </div>
+            <a href="#" class="btn-primary js-booking" id="contactBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
             <div class="email-artistic-container">
-                <a href="mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
-                <span class="email-copy-hint" id="copyHint">Click to copy address ↗</span>
+                <a href="mailto:kaveh.momeni@gmail.com?subject=Fit%20call" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
+                <span class="email-copy-hint" id="copyHint">Click to copy address</span>
             </div>
             <div class="social-nav">
                 <a href="https://linkedin.com/in/kvmmn" target="_blank" rel="noopener" class="social-link">LinkedIn ↗</a>
@@ -1207,42 +1852,35 @@ const BOOKING_FALLBACK_MAILTO =
             </div>
         </div>
     </section>
+    </main>
 
     <footer>
         <span>© 2026 Kaveh Momeni (or just call me Kawe)</span>
+        <span>Berlin · Remote</span>
     </footer>
 
     <script>
-        // Owner: paste Cal.com link here.
+        document.body.classList.remove('no-js');
+
+        // Booking: the Cal.com link, with a prefilled email as fallback.
         const BOOKING_URL = 'https://cal.com/kvmmn/architecture-sprint';
         const BOOKING_FALLBACK_MAILTO =
-            'mailto:kaveh.momeni@gmail.com?subject=Architecture%20Sprint%20fit%20call&body=Name%3A%0ACompany%3A%0AOne-sentence%20workflow%20problem%3A%0A';
+            'mailto:kaveh.momeni@gmail.com?subject=Fit%20call&body=Name%3A%0ACompany%3A%0AOne-sentence%20workflow%20problem%3A%0A';
 
         const isValidBookingUrl = (url) =>
-            typeof url === 'string' &&
-            url.trim() !== '' &&
-            !/^PLACEHOLDER$/i.test(url.trim()) &&
-            /^https:\/\/.+/i.test(url.trim());
+            typeof url === 'string' && /^https:\/\/.+/i.test(url.trim());
 
-        const resolveBookingHref = () =>
-            isValidBookingUrl(BOOKING_URL) ? BOOKING_URL.trim() : BOOKING_FALLBACK_MAILTO;
-
-        const wireBookingButton = (el) => {
-            if (!el) return;
-            const href = resolveBookingHref();
-            el.href = href;
+        document.querySelectorAll('.js-booking').forEach(el => {
             if (isValidBookingUrl(BOOKING_URL)) {
+                el.href = BOOKING_URL.trim();
                 el.target = '_blank';
                 el.rel = 'noopener noreferrer';
             } else {
-                el.removeAttribute('target');
-                el.removeAttribute('rel');
+                el.href = BOOKING_FALLBACK_MAILTO;
             }
-        };
+        });
 
-        wireBookingButton(document.getElementById('heroBookingBtn'));
-        wireBookingButton(document.getElementById('contactBookingBtn'));
-
+        // Reveal on scroll
         const reveals = document.querySelectorAll('.reveal');
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const REVEAL_DURATION_MS = 320;
@@ -1266,19 +1904,16 @@ const BOOKING_FALLBACK_MAILTO =
             items.forEach((el, i) => revealElement(el, i * staggerMs));
         };
 
-        const initReveal = () => {
-            if (prefersReducedMotion) {
-                reveals.forEach(el => el.classList.add('active'));
-                return;
-            }
-
+        if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+            reveals.forEach(el => el.classList.add('active'));
+        } else {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     const target = entry.target;
                     if (target.hasAttribute('data-reveal-group')) {
                         staggerRevealGroup(target);
-                    } else if (target.classList.contains('reveal')) {
+                    } else {
                         revealElement(target, 0);
                     }
                     observer.unobserve(target);
@@ -1287,73 +1922,134 @@ const BOOKING_FALLBACK_MAILTO =
 
             document.querySelectorAll('[data-reveal-group]').forEach(group => observer.observe(group));
             reveals.forEach(el => {
-                if (!el.closest('[data-reveal-group]')) {
-                    observer.observe(el);
-                }
+                if (!el.closest('[data-reveal-group]')) observer.observe(el);
             });
-        };
+        }
 
-        initReveal();
-
+        // Smooth in-page anchors (booking buttons keep their external link)
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (!target) return;
                 e.preventDefault();
-                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             });
         });
 
-        // ScrollSpy: Highlight active section link in navigation header
-        const sections = document.querySelectorAll('section[id]');
+        // ScrollSpy: highlight the nav link of the section in view
         const navLinks = document.querySelectorAll('.nav-link');
+        const spySections = [...navLinks]
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
 
         const highlightNavOnScroll = () => {
-            let scrollY = window.pageYOffset;
-            sections.forEach(current => {
-                const sectionHeight = current.offsetHeight;
-                const sectionTop = current.offsetTop - 150;
-                const sectionId = current.getAttribute('id');
-
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === '#' + sectionId) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
+            const y = window.scrollY + 160;
+            let currentId = null;
+            spySections.forEach(sec => {
+                if (sec.offsetTop <= y) currentId = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
             });
         };
 
-        window.addEventListener('scroll', highlightNavOnScroll);
+        window.addEventListener('scroll', highlightNavOnScroll, { passive: true });
         window.addEventListener('load', highlightNavOnScroll);
 
-        // Soft mesh parallax (low amplitude); skipped when reduced motion is preferred
+        // Soft mesh parallax (low amplitude)
         if (!prefersReducedMotion) {
             window.addEventListener('mousemove', e => {
                 const dx = (e.clientX / window.innerWidth - 0.5) * 6;
                 const dy = (e.clientY / window.innerHeight - 0.5) * 6;
                 document.body.style.setProperty('--mouse-x', (85 + dx) + '%');
                 document.body.style.setProperty('--mouse-y', (15 + dy) + '%');
-            });
+            }, { passive: true });
         }
 
-        // One-click Copy Email with Subtle Visual Text Feedback
+        // Readiness check: scored on the page only, nothing leaves the browser
+        const form = document.getElementById('readinessForm');
+        const questions = [...form.querySelectorAll('.q')];
+        const scoreEl = document.getElementById('resultScore');
+        const meterEl = document.getElementById('resultMeter');
+        const titleEl = document.getElementById('resultTitle');
+        const textEl = document.getElementById('resultText');
+        const gapsEl = document.getElementById('resultGaps');
+        const ctaEl = document.getElementById('resultCta');
+        const resetEl = document.getElementById('resultReset');
+
+        const renderReadiness = () => {
+            let answered = 0;
+            let score = 0;
+            const gaps = [];
+            questions.forEach(q => {
+                const picked = q.querySelector('input:checked');
+                if (!picked) return;
+                answered += 1;
+                const value = parseFloat(picked.value);
+                score += value;
+                if (value < 1) gaps.push(q.dataset.gap);
+            });
+
+            const total = questions.length;
+            meterEl.style.width = `${(score / total) * 100}%`;
+            scoreEl.textContent = answered < total
+                ? `${answered} of ${total} answered`
+                : `Score ${score % 1 ? score.toFixed(1) : score} of ${total}`;
+
+            gapsEl.replaceChildren(...gaps.map(text => {
+                const li = document.createElement('li');
+                li.textContent = text;
+                return li;
+            }));
+            gapsEl.hidden = gaps.length === 0;
+            resetEl.hidden = answered === 0;
+
+            if (answered < total) {
+                titleEl.textContent = answered ? 'Keep going.' : 'Answer a few questions.';
+                textEl.textContent = gaps.length
+                    ? 'Gaps so far, and what closes them:'
+                    : 'Your result and the gaps worth closing will show here as you go.';
+                ctaEl.hidden = true;
+                return;
+            }
+
+            ctaEl.hidden = false;
+            if (score >= 5) {
+                titleEl.textContent = 'Close to build-ready.';
+                textEl.textContent = gaps.length
+                    ? 'You may not need a full sprint. A short review of the plan could be enough. One thing to settle first:'
+                    : 'You may not need a full sprint. A short review of the plan could be enough, and the fit call will tell.';
+            } else if (score >= 3) {
+                titleEl.textContent = 'A good sprint fit.';
+                textEl.textContent = 'The gaps below are exactly what the two weeks are for:';
+            } else {
+                titleEl.textContent = 'Start a step earlier.';
+                textEl.textContent = 'A sprint would be early. Close these first, or start with a workshop for the team:';
+            }
+        };
+
+        form.addEventListener('change', renderReadiness);
+        resetEl.addEventListener('click', () => {
+            form.reset();
+            renderReadiness();
+        });
+
+        // One-click copy email
         const emailBtn = document.getElementById('emailBtn');
         const copyHint = document.getElementById('copyHint');
-        if (emailBtn && copyHint) {
+        if (emailBtn && copyHint && navigator.clipboard) {
             emailBtn.addEventListener('click', (e) => {
-                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
-                    e.preventDefault();
-                    navigator.clipboard.writeText('kaveh.momeni@gmail.com').then(() => {
-                        const originalText = copyHint.innerText;
-                        copyHint.innerText = 'Copied to clipboard ✓';
-                        copyHint.style.color = 'var(--accent)';
-                        setTimeout(() => {
-                            copyHint.innerText = originalText;
-                            copyHint.style.color = '';
-                        }, 2400);
-                    }).catch(() => {});
-                }
+                if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+                e.preventDefault();
+                navigator.clipboard.writeText('kaveh.momeni@gmail.com').then(() => {
+                    const originalText = copyHint.textContent;
+                    copyHint.textContent = 'Copied to clipboard ✓';
+                    copyHint.style.color = 'var(--accent-ink)';
+                    setTimeout(() => {
+                        copyHint.textContent = originalText;
+                        copyHint.style.color = '';
+                    }, 2400);
+                }).catch(() => { window.location.href = emailBtn.href; });
             });
         }
     </script>
