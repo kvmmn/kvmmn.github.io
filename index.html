@@ -54,6 +54,7 @@
             --text-soft: #475569;
             --text-muted: #64748b;
             --border: #e2e8f0;
+            --border-strong: #cbd5e1;
             --accent: #00d4ff;
             --accent-ink: #0e7490;
             --accent-wash: rgba(0, 212, 255, 0.08);
@@ -61,17 +62,20 @@
             --accent-glow: rgba(0, 212, 255, 0.25);
             --btn-bg: #0f172a;
             --btn-text: #ffffff;
-            --nav-bg: rgba(248, 249, 250, 0.92);
+            --nav-bg: rgba(248, 249, 250, 0.9);
             --grid-line: rgba(0, 212, 255, 0.03);
             --mesh-center: rgba(255, 255, 255, 0.5);
             --contact-bg: linear-gradient(145deg, #ffffff 0%, rgba(240, 249, 255, 0.7) 100%);
             --serif: 'Instrument Serif', Georgia, serif;
             --sans: 'Inter', -apple-system, sans-serif;
             --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            --shadow-subtle: 0 2px 12px rgba(15, 23, 42, 0.03);
-            --shadow-hover: 0 12px 28px rgba(0, 212, 255, 0.07), 0 2px 8px rgba(15, 23, 42, 0.03);
-            --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
-            --motion-base: 0.28s;
+            --shadow-subtle: 0 1px 2px rgba(15, 23, 42, 0.03), 0 4px 16px rgba(15, 23, 42, 0.03);
+            --shadow-lift: 0 1px 2px rgba(15, 23, 42, 0.04), 0 28px 56px -28px rgba(15, 23, 42, 0.22);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --motion: 0.28s;
+            --wrap: 1040px;
+            --gutter: 4rem;
+            --radius: 16px;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -83,6 +87,7 @@
                 --text-soft: #a3b1c6;
                 --text-muted: #7c8aa3;
                 --border: #1f2a40;
+                --border-strong: #2c3a55;
                 --accent-ink: #22d3ee;
                 --accent-wash: rgba(0, 212, 255, 0.1);
                 --accent-line: rgba(0, 212, 255, 0.4);
@@ -93,13 +98,13 @@
                 --mesh-center: rgba(11, 17, 32, 0);
                 --contact-bg: linear-gradient(145deg, #111a2e 0%, rgba(8, 47, 73, 0.55) 100%);
                 --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.25);
-                --shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 212, 255, 0.12);
+                --shadow-lift: 0 30px 60px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 212, 255, 0.06);
             }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
         body {
             font-family: var(--sans);
@@ -113,11 +118,9 @@
             position: relative;
         }
 
-        h1, h2, h3, h4 { text-wrap: balance; }
-        p { text-wrap: pretty; }
-
+        h1, h2, h3, h4 { text-wrap: balance; font-weight: 400; }
+        p, dd, li { text-wrap: pretty; }
         a { color: inherit; }
-
         [hidden] { display: none !important; }
 
         :focus-visible {
@@ -126,7 +129,9 @@
             border-radius: 6px;
         }
 
-        /* Ambient mesh gradient */
+        ::selection { background: var(--accent); color: #fff; }
+
+        /* Ambient mesh gradient and architectural hairline grid */
         body::before {
             content: '';
             position: fixed;
@@ -139,7 +144,6 @@
             z-index: -1;
         }
 
-        /* Architectural hairline grid */
         body::after {
             content: '';
             position: fixed;
@@ -151,8 +155,6 @@
             pointer-events: none;
             z-index: -1;
         }
-
-        ::selection { background: var(--accent); color: #fff; }
 
         .skip-link {
             position: absolute;
@@ -168,16 +170,135 @@
         }
         .skip-link:focus { top: 1rem; }
 
-        /* Navigation */
+        /* ---------- Shared type system ---------- */
+        .label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-ink);
+        }
+
+        .label-muted { color: var(--text-muted); }
+
+        .section-title {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--accent-ink);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-weight: 500;
+        }
+
+        .section-title::before {
+            content: '0' attr(data-step);
+            color: var(--text-muted);
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), var(--border) 40%, transparent);
+            opacity: 0.6;
+        }
+
+        .section-heading {
+            font-family: var(--serif);
+            font-size: clamp(2.1rem, 4.2vw, 3rem);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            max-width: 760px;
+        }
+
+        .section-intro {
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            max-width: 600px;
+            margin-bottom: 3.4rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: var(--btn-text);
+            background: var(--btn-bg);
+            text-decoration: none;
+            padding: 14px 24px;
+            min-height: 50px;
+            border-radius: 14px;
+            border: 1px solid var(--btn-bg);
+            cursor: pointer;
+            transition: transform var(--motion) var(--ease), box-shadow var(--motion) var(--ease), border-color var(--motion) var(--ease);
+        }
+
+        .btn-primary .arrow {
+            transition: transform var(--motion) var(--ease);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.14), 0 0 0 1px var(--accent-line);
+        }
+
+        .btn-primary:hover .arrow { transform: translateX(3px); }
+
+        .btn-label-short { display: none; }
+
+        .text-link {
+            font-size: 0.92rem;
+            color: var(--text-soft);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-strong);
+            padding-bottom: 2px;
+            transition: color var(--motion), border-color var(--motion);
+        }
+
+        .text-link:hover { color: var(--text); border-color: var(--accent); }
+
+        .inline-link {
+            color: var(--accent-ink);
+            text-decoration: underline;
+            text-decoration-color: var(--accent-line);
+            text-underline-offset: 4px;
+            font-weight: 500;
+            transition: text-decoration-color var(--motion);
+        }
+
+        .inline-link:hover { text-decoration-color: var(--accent); }
+
+        /* ---------- Layout ---------- */
+        section {
+            padding: 5.5rem var(--gutter);
+            max-width: var(--wrap);
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* ---------- Navigation ---------- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 0.9rem 3.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
             z-index: 100;
             background: var(--nav-bg);
             backdrop-filter: blur(24px);
@@ -195,6 +316,16 @@
             background: linear-gradient(90deg, var(--accent), transparent 60%);
         }
 
+        .nav-inner {
+            max-width: var(--wrap);
+            margin: 0 auto;
+            padding: 0.85rem var(--gutter);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
         .logo {
             font-family: var(--serif);
             font-size: 1.35rem;
@@ -204,16 +335,9 @@
             white-space: nowrap;
         }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
 
-        .nav-links {
-            display: flex;
-            gap: 1.8rem;
-        }
+        .nav-links { display: flex; gap: 1.7rem; }
 
         .nav-link {
             font-size: 0.85rem;
@@ -224,7 +348,7 @@
             min-height: 44px;
             display: inline-flex;
             align-items: center;
-            transition: color var(--motion-base) var(--ease-premium);
+            transition: color var(--motion) var(--ease);
         }
 
         .nav-link::after {
@@ -237,14 +361,11 @@
             background: var(--accent);
             transform: scaleX(0);
             transform-origin: left center;
-            transition: transform var(--motion-base) var(--ease-premium);
+            transition: transform var(--motion) var(--ease);
         }
 
-        .nav-link:hover,
-        .nav-link.active { color: var(--text); }
-
-        .nav-link:hover::after,
-        .nav-link.active::after { transform: scaleX(1); }
+        .nav-link:hover, .nav-link.active { color: var(--text); }
+        .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
 
         .nav-cta {
             font-size: 0.82rem;
@@ -256,30 +377,27 @@
             border-radius: 10px;
             border: 1px solid var(--btn-bg);
             white-space: nowrap;
-            transition: border-color var(--motion-base) var(--ease-premium), box-shadow var(--motion-base) var(--ease-premium);
+            transition: border-color var(--motion) var(--ease), box-shadow var(--motion) var(--ease);
         }
 
-        .nav-cta:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 1px var(--accent-line);
-        }
+        .nav-cta:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-line); }
 
-        /* Hero */
+        /* ---------- Hero ---------- */
         .hero {
-            min-height: 88vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 8rem 3rem 3.5rem;
-            max-width: 960px;
-            margin: 0 auto;
+            min-height: 92vh;
+            padding-top: 8.5rem;
+            padding-bottom: 4rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+            gap: 4rem;
+            align-items: center;
         }
 
         .status {
             display: inline-flex;
             align-items: center;
             gap: 0.65rem;
-            margin-bottom: 2.2rem;
+            margin-bottom: 2rem;
             padding: 0.4rem 1rem;
             border-radius: 30px;
             background: var(--surface);
@@ -304,8 +422,8 @@
             inset: -3px;
             border-radius: 50%;
             border: 1.5px solid var(--accent);
-            opacity: 0.7;
-            animation: pulse-ring 2.4s var(--ease-premium) 2;
+            opacity: 0;
+            animation: pulse-ring 2.4s var(--ease) 2;
         }
 
         @keyframes pulse-ring {
@@ -315,7 +433,6 @@
 
         .status-text {
             font-size: 0.78rem;
-            color: var(--text);
             font-weight: 500;
             letter-spacing: 0.02em;
         }
@@ -324,11 +441,10 @@
 
         .hero h1 {
             font-family: var(--serif);
-            font-size: clamp(2.7rem, 6.2vw, 4.8rem);
-            font-weight: 400;
-            line-height: 1.08;
-            margin-bottom: 1.8rem;
-            letter-spacing: -0.02em;
+            font-size: clamp(2.8rem, 5.4vw, 4.6rem);
+            line-height: 1.04;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.6rem;
         }
 
         .hero h1 em {
@@ -339,11 +455,11 @@
         }
 
         .hero-lede {
-            font-size: 1.2rem;
+            font-size: 1.16rem;
             color: var(--text-soft);
             line-height: 1.7;
-            margin-bottom: 2.8rem;
-            max-width: 640px;
+            margin-bottom: 2.4rem;
+            max-width: 540px;
         }
 
         .hero-actions {
@@ -353,281 +469,259 @@
             align-items: center;
         }
 
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            font-size: 0.95rem;
-            letter-spacing: 0.01em;
-            color: var(--btn-text);
-            background: var(--btn-bg);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 14px 24px;
-            min-height: 48px;
-            border-radius: 14px;
-            border: 1px solid var(--btn-bg);
-            cursor: pointer;
-            font-family: var(--sans);
-            transition:
-                transform var(--motion-base) var(--ease-premium),
-                box-shadow var(--motion-base) var(--ease-premium),
-                border-color var(--motion-base) var(--ease-premium);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.14), 0 0 0 1px var(--accent-line);
-        }
-
-        .btn-label-short { display: none; }
-
-        .text-link {
-            font-size: 0.92rem;
-            color: var(--text-soft);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2px;
-            transition: color var(--motion-base), border-color var(--motion-base);
-        }
-
-        .text-link:hover { color: var(--text); border-color: var(--accent); }
-
         .trust-line {
-            margin-top: 2.6rem;
-            font-size: 0.8rem;
+            margin-top: 2.4rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
             font-family: var(--mono);
             letter-spacing: 0.06em;
         }
 
-        /* Proof strip */
+        /* Blueprint sheet: an example of the sprint deliverable */
+        .sheet {
+            padding: 1.1rem 1.25rem 1.25rem;
+            box-shadow: var(--shadow-lift);
+            position: relative;
+        }
+
+        .sheet::before {
+            content: '';
+            position: absolute;
+            inset: 7px;
+            border: 1px dashed var(--border);
+            border-radius: 11px;
+            pointer-events: none;
+        }
+
+        .sheet-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.2rem 0.3rem 0.85rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .sheet-head .label { font-size: 0.64rem; }
+
+        .sheet-figure {
+            padding: 1rem 0 0.4rem;
+            position: relative;
+        }
+
+        .bp { width: 100%; height: auto; display: block; overflow: visible; }
+
+        .bp text { font-family: var(--mono); }
+        .bp .n-box { fill: var(--surface-soft); stroke: var(--border-strong); stroke-width: 1; }
+        .bp .n-box.key { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 1.4; }
+        .bp .n-title { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; fill: var(--text); }
+        .bp .n-sub { font-size: 9px; fill: var(--text-muted); }
+        .bp .edge { fill: none; stroke: var(--text-muted); stroke-width: 1.1; }
+        .bp .edge-dash { fill: none; stroke: var(--accent-ink); stroke-width: 1; stroke-dasharray: 3 3; }
+        .bp .edge-label { font-size: 8.5px; fill: var(--text-muted); }
+        .bp .dim { stroke: var(--accent-ink); stroke-width: 0.9; }
+        .bp .dim-label { font-size: 8.5px; fill: var(--accent-ink); letter-spacing: 0.02em; }
+        .bp .arrowhead { fill: var(--text-muted); }
+
+        .bp .draw {
+            stroke-dasharray: 160;
+            stroke-dashoffset: 160;
+            animation: draw 1.1s var(--ease) forwards;
+            animation-delay: calc(0.35s + var(--i, 0) * 0.22s);
+        }
+
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+
+        .sheet-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border);
+            position: relative;
+        }
+
+        .sheet-meta div {
+            padding: 0.8rem 0.3rem 0.1rem;
+        }
+
+        .sheet-meta div:nth-child(odd) { padding-right: 1rem; }
+        .sheet-meta div:nth-child(n+3) { border-top: 1px solid var(--border); padding-top: 0.7rem; }
+
+        .sheet-meta dt {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .sheet-meta dd { font-size: 0.84rem; color: var(--text); font-weight: 400; }
+
+        .sheet-caption {
+            margin-top: 0.9rem;
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* ---------- Proof row ---------- */
         .proof {
-            max-width: 1040px;
+            max-width: var(--wrap);
             margin: 0 auto;
-            padding: 0 4rem 2rem;
+            padding: 0 var(--gutter);
         }
 
         .proof-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            background: var(--surface);
-            box-shadow: var(--shadow-subtle);
-            overflow: hidden;
+            border-top: 1px solid var(--border-strong);
+            border-bottom: 1px solid var(--border);
         }
 
         .proof-item {
-            padding: 1.6rem 1.6rem 1.4rem;
-            border-right: 1px solid var(--border);
+            padding: 1.6rem 1.4rem 1.5rem 0;
         }
 
-        .proof-item:last-child { border-right: none; }
+        .proof-item + .proof-item {
+            padding-left: 1.4rem;
+            border-left: 1px solid var(--border);
+        }
 
         .proof-num {
             font-family: var(--serif);
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             line-height: 1;
             letter-spacing: -0.02em;
             display: block;
             margin-bottom: 0.55rem;
         }
 
-        .proof-num small {
-            font-size: 1.2rem;
-            color: var(--accent-ink);
-            margin-left: 0.1rem;
-        }
+        .proof-num small { font-size: 1.3rem; color: var(--accent-ink); margin-left: 0.1rem; }
 
         .proof-label {
             font-size: 0.84rem;
             color: var(--text-soft);
             line-height: 1.45;
             display: block;
+            max-width: 200px;
         }
 
-        /* Sections */
-        section {
-            padding: 6rem 4rem;
-            max-width: 1040px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--accent-ink);
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            margin-bottom: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            font-weight: 500;
-        }
-
-        .section-title::before {
-            content: '0' attr(data-step);
-            color: var(--text-muted);
-            font-size: 0.78rem;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent), var(--border) 40%, transparent);
-            opacity: 0.6;
-        }
-
-        .section-heading {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1.15;
-            margin-bottom: 0.9rem;
-            max-width: 720px;
-        }
-
-        .section-intro {
-            font-size: 1.04rem;
-            color: var(--text-soft);
-            max-width: 620px;
-            margin-bottom: 3rem;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            box-shadow: var(--shadow-subtle);
-            transition:
-                border-color var(--motion-base) var(--ease-premium),
-                box-shadow var(--motion-base) var(--ease-premium),
-                transform var(--motion-base) var(--ease-premium);
-        }
-
-        .card:hover {
-            border-color: var(--accent-line);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Services */
+        /* ---------- Services ---------- */
         .services-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.6rem;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 1.4rem;
+            align-items: stretch;
         }
 
         .service {
-            padding: 2.4rem 2.2rem 2.2rem;
+            padding: 2.4rem 2.3rem 2.1rem;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: border-color var(--motion) var(--ease), box-shadow var(--motion) var(--ease);
         }
 
-        .service-kicker {
-            font-size: 0.74rem;
-            font-family: var(--mono);
-            color: var(--accent-ink);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-            margin-bottom: 0.8rem;
+        .service:hover { border-color: var(--accent-line); }
+
+        .service.primary {
+            box-shadow: var(--shadow-lift);
+        }
+
+        .service.primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent 80%);
+        }
+
+        .service-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .service h3 {
             font-family: var(--serif);
-            font-size: 1.9rem;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            line-height: 1.15;
+            font-size: 2.1rem;
+            letter-spacing: -0.015em;
+            line-height: 1.1;
             margin-bottom: 0.8rem;
         }
 
         .service-lede {
-            font-size: 0.96rem;
+            font-size: 0.97rem;
             color: var(--text-soft);
-            margin-bottom: 1.6rem;
-        }
-
-        .service-list-label {
-            font-size: 0.74rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 0.8rem;
-        }
-
-        .check-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
             margin-bottom: 1.8rem;
         }
 
-        .check-list li {
-            font-size: 0.92rem;
-            color: var(--text);
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.55;
+        .deliverables {
+            list-style: none;
+            counter-reset: d;
+            border-top: 1px solid var(--border);
+            margin-bottom: 1.8rem;
         }
 
-        .check-list li::before {
-            content: '';
-            position: absolute;
-            left: 0.1rem;
-            top: 0.55rem;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            border: 1.5px solid var(--accent);
+        .deliverables li {
+            counter-increment: d;
+            display: grid;
+            grid-template-columns: 2rem 1fr;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.93rem;
+            line-height: 1.5;
         }
 
-        .check-list li span { color: var(--text-soft); }
+        .deliverables li::before {
+            content: counter(d, decimal-leading-zero);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent-ink);
+            padding-top: 0.18rem;
+        }
+
+        .deliverables li span { color: var(--text-soft); }
 
         .service-foot {
             margin-top: auto;
-            padding-top: 1.3rem;
-            border-top: 1px solid var(--border);
             font-size: 0.86rem;
             color: var(--text-soft);
         }
 
-        .service-foot a {
-            color: var(--accent-ink);
-            text-underline-offset: 3px;
-        }
-
         .services-note {
-            margin-top: 1.8rem;
+            margin-top: 1.6rem;
             font-size: 0.92rem;
             color: var(--text-soft);
         }
 
         /* Sprint timeline */
-        .timeline {
-            margin-top: 4.5rem;
+        .timeline { margin-top: 5rem; }
+
+        .timeline-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .timeline-title {
             font-family: var(--serif);
-            font-size: 1.6rem;
-            font-weight: 400;
-            margin-bottom: 1.8rem;
+            font-size: 1.75rem;
+            letter-spacing: -0.01em;
         }
 
         .timeline-steps {
             list-style: none;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0;
             position: relative;
         }
 
@@ -641,10 +735,7 @@
             background: linear-gradient(90deg, var(--accent), var(--border) 70%);
         }
 
-        .timeline-steps li {
-            position: relative;
-            padding: 2.2rem 1.4rem 0 0;
-        }
+        .timeline-steps li { position: relative; padding: 2.2rem 1.6rem 0 0; }
 
         .timeline-steps li::before {
             content: '';
@@ -658,56 +749,49 @@
             border: 1.5px solid var(--accent);
         }
 
-        .timeline-when {
-            font-family: var(--mono);
-            font-size: 0.74rem;
-            color: var(--accent-ink);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            display: block;
-            margin-bottom: 0.35rem;
-        }
+        .timeline-steps li:first-child::before { background: var(--accent); }
 
-        .timeline-steps h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.35rem;
-        }
+        .timeline-steps .label { display: block; margin-bottom: 0.4rem; }
 
-        .timeline-steps p {
-            font-size: 0.88rem;
-            color: var(--text-soft);
-            line-height: 1.55;
-        }
+        .timeline-steps h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.35rem; }
 
-        /* Readiness check */
+        .timeline-steps p { font-size: 0.88rem; color: var(--text-soft); line-height: 1.55; }
+
+        /* ---------- Readiness check ---------- */
         .check-wrap {
             display: grid;
-            grid-template-columns: 1.35fr 1fr;
-            gap: 1.6rem;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 1.4rem;
             align-items: start;
         }
 
-        .check-form {
-            padding: 1rem 2rem;
-        }
+        .check-form { padding: 0.6rem 2rem; counter-reset: q; }
 
         .q {
             border: none;
             padding: 1.15rem 0;
             border-bottom: 1px solid var(--border);
             display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 0.8rem 1.4rem;
+            grid-template-columns: 1.8rem 1fr auto;
+            gap: 0.8rem 1rem;
             align-items: center;
+            counter-increment: q;
         }
 
         .q:last-of-type { border-bottom: none; }
 
+        .q::before {
+            content: counter(q, decimal-leading-zero);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent-ink);
+            align-self: start;
+            padding-top: 0.2rem;
+        }
+
         .q legend {
             float: left;
             font-size: 0.95rem;
-            color: var(--text);
             line-height: 1.45;
             padding: 0;
         }
@@ -727,11 +811,7 @@
             background: var(--surface-soft);
         }
 
-        .seg input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
+        .seg input { position: absolute; opacity: 0; pointer-events: none; }
 
         .seg label {
             font-size: 0.8rem;
@@ -743,38 +823,18 @@
             color: var(--text-soft);
             white-space: nowrap;
             border-right: 1px solid var(--border);
-            transition: background var(--motion-base), color var(--motion-base);
+            transition: background var(--motion), color var(--motion);
             user-select: none;
         }
 
         .seg label:last-of-type { border-right: none; }
-
         .seg label:hover { color: var(--text); }
+        .seg input:checked + label { background: var(--btn-bg); color: var(--btn-text); }
+        .seg input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: -2px; }
 
-        .seg input:checked + label {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-        }
+        .result { padding: 2rem; position: sticky; top: 96px; }
 
-        .seg input:focus-visible + label {
-            outline: 2px solid var(--accent);
-            outline-offset: -2px;
-        }
-
-        .result {
-            padding: 2rem;
-            position: sticky;
-            top: 96px;
-        }
-
-        .result-score {
-            font-family: var(--mono);
-            font-size: 0.76rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 0.9rem;
-        }
+        .result-score { margin-bottom: 0.9rem; }
 
         .meter {
             height: 6px;
@@ -790,22 +850,17 @@
             height: 100%;
             width: 0;
             background: linear-gradient(90deg, rgba(0, 212, 255, 0.5), var(--accent));
-            transition: width 0.45s var(--ease-premium);
+            transition: width 0.45s var(--ease);
         }
 
         .result h3 {
             font-family: var(--serif);
-            font-size: 1.6rem;
-            font-weight: 400;
-            line-height: 1.2;
+            font-size: 1.7rem;
+            line-height: 1.15;
             margin-bottom: 0.7rem;
         }
 
-        .result p {
-            font-size: 0.92rem;
-            color: var(--text-soft);
-            margin-bottom: 1rem;
-        }
+        .result p { font-size: 0.92rem; color: var(--text-soft); margin-bottom: 1rem; }
 
         .gap-list {
             list-style: none;
@@ -827,13 +882,11 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 0.55rem;
+            top: 0.6rem;
             width: 6px;
             height: 1.5px;
             background: var(--accent);
         }
-
-        .gap-list li strong { color: var(--text); font-weight: 500; }
 
         .result .btn-primary { width: 100%; }
 
@@ -849,277 +902,309 @@
             text-underline-offset: 3px;
         }
 
-        /* Work */
-        .projects-list {
+        /* ---------- Work ---------- */
+        .group-head {
             display: flex;
-            flex-direction: column;
-            gap: 1.15rem;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid var(--border-strong);
+            margin-bottom: 0.4rem;
         }
 
-        .project-card {
-            padding: 2.4rem 2.6rem;
+        .group-head h3 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .group-head p { font-size: 0.86rem; color: var(--text-muted); }
+
+        .cases { list-style: none; margin-bottom: 4.5rem; }
+
+        .case {
             display: grid;
-            grid-template-columns: 1.2fr 2fr;
-            gap: 2.8rem;
+            grid-template-columns: 3rem minmax(0, 0.95fr) minmax(0, 1.6fr);
+            gap: 0 2rem;
+            padding: 2.2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .case-num {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--accent-ink);
+            padding-top: 0.45rem;
+        }
+
+        .case-head h4 {
+            font-family: var(--serif);
+            font-size: 1.65rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.6rem;
+        }
+
+        .case-kind { font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; }
+
+        .case-metric {
+            margin-top: 1.4rem;
+            font-family: var(--serif);
+            font-size: 2rem;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .case-metric small {
+            display: block;
+            font-family: var(--sans);
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            letter-spacing: 0;
+            margin-top: 0.35rem;
+        }
+
+        .case-body { display: flex; flex-direction: column; gap: 0.9rem; }
+
+        .case-body div {
+            display: grid;
+            grid-template-columns: 5.5rem 1fr;
+            gap: 1rem;
+        }
+
+        .case-body dt {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            padding-top: 0.25rem;
+        }
+
+        .case-body dd { font-size: 0.94rem; color: var(--text-soft); line-height: 1.65; }
+
+        .case-body dd strong { color: var(--text); font-weight: 500; }
+
+        .case-tech {
+            grid-column: 3;
+            margin-top: 1.2rem;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 1.6rem;
+        }
+
+        .product {
+            padding: 2rem 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            transition: border-color var(--motion) var(--ease), box-shadow var(--motion) var(--ease), transform var(--motion) var(--ease);
+        }
+
+        .product:hover { border-color: var(--accent-line); transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+        .product.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+            gap: 2.6rem;
             position: relative;
             overflow: hidden;
         }
 
-        .project-card:hover { transform: translateY(-2px); }
-
-        .project-card::before {
+        .product.featured::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 3px;
             height: 100%;
-            background: linear-gradient(180deg, var(--accent), rgba(0, 212, 255, 0.3));
-            opacity: 0;
-            transition: opacity var(--motion-base) var(--ease-premium);
+            background: linear-gradient(180deg, var(--accent), rgba(0, 212, 255, 0.25));
         }
 
-        .project-card:hover::before,
-        .project-card.featured::before { opacity: 1; }
-
-        .project-meta h3 {
-            font-family: var(--serif);
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.7rem;
-            line-height: 1.25;
-        }
-
-        .project-tags {
+        .product-top {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
             align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
         }
 
-        .project-tag {
-            font-size: 0.7rem;
-            color: var(--accent-ink);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 500;
-            background: var(--accent-wash);
-            border: 1px solid rgba(0, 212, 255, 0.22);
-            padding: 0.22rem 0.65rem;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .project-live {
+        .live {
             display: inline-flex;
             align-items: center;
             gap: 0.45rem;
             font-size: 0.72rem;
-            color: var(--text-soft);
             font-weight: 500;
-        }
-
-        .project-live .status-dot { width: 6px; height: 6px; }
-
-        .project-desc p {
-            font-size: 0.95rem;
             color: var(--text-soft);
-            line-height: 1.7;
-            margin-bottom: 0.9rem;
+            white-space: nowrap;
         }
 
-        .project-desc p strong { color: var(--text); font-weight: 500; }
+        .live .status-dot { width: 6px; height: 6px; }
 
-        .project-note {
-            font-size: 0.86rem !important;
+        .product h4 {
+            font-family: var(--serif);
+            font-size: 1.75rem;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.7rem;
+        }
+
+        .product.featured h4 { font-size: 2.3rem; }
+
+        .product p { font-size: 0.93rem; color: var(--text-soft); margin-bottom: 0.9rem; }
+
+        .product p strong { color: var(--text); font-weight: 500; }
+
+        .product-status {
+            font-size: 0.84rem !important;
             padding-left: 0.9rem;
             border-left: 2px solid var(--accent-line);
         }
 
-        .project-links {
-            margin: 0.2rem 0 0.9rem;
+        .product-foot {
+            margin-top: auto;
+            padding-top: 0.6rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 1.1rem;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.6rem 1.2rem;
         }
 
-        .project-links a {
-            font-size: 0.86rem;
-            color: var(--accent-ink);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            font-weight: 500;
-        }
+        .product-links { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: 0.86rem; }
 
-        .project-tech {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-family: var(--mono);
-            letter-spacing: -0.01em;
-        }
+        .tech { font-family: var(--mono); font-size: 0.74rem; color: var(--text-muted); }
 
-        .more-work {
-            margin-top: 2.6rem;
-        }
+        .more-work { margin-top: 3.4rem; }
 
-        .more-work h3 {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 0.6rem;
-            font-family: var(--mono);
-        }
-
-        .more-list {
-            list-style: none;
-        }
+        .more-list { list-style: none; border-top: 1px solid var(--border); margin-top: 0.8rem; }
 
         .more-list li {
             display: grid;
-            grid-template-columns: 1.2fr 2fr auto;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) 6rem;
             gap: 1.6rem;
-            padding: 1.05rem 0;
+            padding: 0.95rem 0;
             border-bottom: 1px solid var(--border);
             align-items: baseline;
         }
 
-        .more-name {
-            font-size: 0.98rem;
-            font-weight: 500;
-        }
+        .more-name { font-size: 0.95rem; font-weight: 500; }
+        .more-desc { font-size: 0.88rem; color: var(--text-soft); }
+        .more-link { font-size: 0.82rem; text-align: right; white-space: nowrap; }
+        .more-link.muted { color: var(--text-muted); font-size: 0.78rem; }
 
-        .more-desc {
-            font-size: 0.88rem;
-            color: var(--text-soft);
-        }
-
-        .more-link {
-            font-size: 0.82rem;
-            color: var(--accent-ink);
-            white-space: nowrap;
-            text-underline-offset: 3px;
-        }
-
-        .more-link.muted { color: var(--text-muted); text-decoration: none; }
-
-        /* Background / credentials */
-        .bg-intro {
+        /* ---------- About ---------- */
+        .about-grid {
             display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2.6rem;
-            align-items: end;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+            gap: 4rem;
+            align-items: start;
         }
 
-        .bg-intro p {
-            font-size: 1.04rem;
+        .about-lede {
+            font-size: 1.08rem;
             color: var(--text-soft);
+            margin-bottom: 2.2rem;
+            max-width: 560px;
         }
 
-        .bg-langs {
-            font-size: 0.86rem;
-            color: var(--text-soft);
-            border-left: 2px solid var(--accent-line);
-            padding-left: 1rem;
-        }
+        .career { list-style: none; border-top: 1px solid var(--border-strong); }
 
-        .bg-langs strong { color: var(--text); font-weight: 500; }
-
-        .cred-grid {
+        .career li {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.1rem;
-        }
-
-        .cred {
-            padding: 1.6rem 1.6rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-        }
-
-        .cred-type {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-ink);
-            font-weight: 500;
-        }
-
-        .cred h4 {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            font-weight: 400;
-            line-height: 1.25;
-        }
-
-        .cred p {
-            font-size: 0.84rem;
-            color: var(--text-soft);
-            line-height: 1.5;
-        }
-
-        .cred a {
-            font-size: 0.82rem;
-            color: var(--accent-ink);
-            text-underline-offset: 3px;
-            margin-top: 0.3rem;
-        }
-
-        .cred.wide { grid-column: span 2; }
-
-        /* Approach */
-        .approach-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.1rem;
-        }
-
-        .approach-card {
-            padding: 1.7rem 1.5rem;
-        }
-
-        .approach-num {
-            font-size: 0.8rem;
-            color: var(--accent-ink);
-            font-family: var(--mono);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 0.8rem;
-        }
-
-        .approach-card h4 {
-            font-family: var(--serif);
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 0.45rem;
-        }
-
-        .approach-card p {
-            font-size: 0.87rem;
-            color: var(--text-soft);
-            line-height: 1.55;
-        }
-
-        /* FAQ */
-        .faq {
-            max-width: 760px;
-        }
-
-        .faq details {
+            grid-template-columns: 7.5rem 1fr;
+            gap: 1.2rem;
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border);
         }
+
+        .career .when {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--accent-ink);
+            padding-top: 0.2rem;
+            letter-spacing: 0.04em;
+        }
+
+        .career strong { display: block; font-weight: 500; font-size: 0.97rem; margin-bottom: 0.15rem; }
+        .career span { display: block; font-size: 0.88rem; line-height: 1.55; color: var(--text-soft); }
+
+        .creds { padding: 1.8rem 1.9rem 1.2rem; }
+
+        .creds .label { display: block; margin-bottom: 0.6rem; }
+
+        .creds dl div {
+            display: grid;
+            grid-template-columns: 6rem 1fr;
+            gap: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .creds dl div:last-child { border-bottom: none; }
+
+        .creds dt {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            padding-top: 0.22rem;
+        }
+
+        .creds dd { font-size: 0.9rem; line-height: 1.5; }
+        .creds dd strong { font-weight: 500; }
+        .creds dd span { display: block; color: var(--text-soft); font-size: 0.84rem; }
+
+        .principles {
+            margin-top: 4.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--border-strong);
+        }
+
+        .principle { padding: 1.5rem 1.4rem 0 0; }
+
+        .principle + .principle { padding-left: 1.4rem; border-left: 1px solid var(--border); }
+
+        .principle .label { display: block; margin-bottom: 0.7rem; }
+
+        .principle h4 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .principle p { font-size: 0.87rem; color: var(--text-soft); line-height: 1.55; }
+
+        /* ---------- FAQ ---------- */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+            gap: 4rem;
+        }
+
+        .faq-grid .section-heading { font-size: clamp(2rem, 3.6vw, 2.6rem); }
+
+        .faq { border-top: 1px solid var(--border-strong); }
+
+        .faq details { border-bottom: 1px solid var(--border); }
 
         .faq summary {
             list-style: none;
             cursor: pointer;
-            padding: 1.25rem 2.5rem 1.25rem 0;
+            padding: 1.2rem 2.5rem 1.2rem 0;
             font-size: 1.02rem;
-            font-weight: 500;
+            font-weight: 400;
             position: relative;
         }
 
@@ -1134,18 +1219,14 @@
             font-family: var(--mono);
             font-size: 1.1rem;
             color: var(--accent-ink);
-            transition: transform var(--motion-base) var(--ease-premium);
+            transition: transform var(--motion) var(--ease);
         }
 
         .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
 
-        .faq details p {
-            font-size: 0.94rem;
-            color: var(--text-soft);
-            padding: 0 2.5rem 1.4rem 0;
-        }
+        .faq details p { font-size: 0.94rem; color: var(--text-soft); padding: 0 2.5rem 1.3rem 0; }
 
-        /* Contact */
+        /* ---------- Contact ---------- */
         .contact {
             padding: 4.5rem 4rem;
             text-align: center;
@@ -1153,8 +1234,8 @@
             border: 1px solid var(--accent-line);
             border-radius: 28px;
             box-shadow: 0 16px 50px rgba(0, 212, 255, 0.08);
-            max-width: 1040px;
-            margin: 3rem auto 3.75rem;
+            width: min(calc(100% - 2 * var(--gutter)), calc(var(--wrap) - 2 * var(--gutter)));
+            margin: 1.5rem auto 3.75rem;
             position: relative;
             overflow: hidden;
         }
@@ -1174,42 +1255,58 @@
         .contact h2 {
             font-family: var(--serif);
             font-size: clamp(2.5rem, 5vw, 3.6rem);
-            font-weight: 400;
             letter-spacing: -0.02em;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
         }
 
         .contact > p {
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             color: var(--text-soft);
-            margin: 0 auto 2.4rem;
-            max-width: 560px;
+            margin: 0 auto 2.2rem;
+            max-width: 540px;
         }
 
-        .contact-links {
+        .next-steps {
+            list-style: none;
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            align-items: center;
+            justify-content: center;
+            gap: 0.6rem 2.2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.4rem;
+            font-size: 0.86rem;
+            color: var(--text-soft);
         }
 
-        .contact .btn-primary { min-width: min(100%, 420px); }
+        .next-steps li { display: inline-flex; align-items: center; gap: 0.55rem; }
 
-        .email-artistic-container {
+        .next-steps li span {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--accent-ink);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-line);
             display: inline-flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
+
+        .contact-links { display: flex; flex-direction: column; gap: 2rem; align-items: center; }
+
+        .contact .btn-primary { min-width: min(100%, 400px); }
+
+        .email-artistic-container { display: inline-flex; flex-direction: column; align-items: center; }
 
         .contact-email {
             font-family: var(--serif);
-            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
             color: var(--text);
             text-decoration: none;
             position: relative;
             padding-bottom: 0.4rem;
             letter-spacing: -0.02em;
-            transition: color 0.4s var(--ease-premium);
+            transition: color 0.4s var(--ease);
             overflow-wrap: anywhere;
         }
 
@@ -1223,33 +1320,24 @@
             height: 1.5px;
             background: var(--text);
             opacity: 0.25;
-            transition: all 0.45s var(--ease-premium);
+            transition: all 0.45s var(--ease);
         }
 
         .contact-email:hover { color: var(--accent-ink); }
-
-        .contact-email:hover::after {
-            width: 100%;
-            background: var(--accent);
-            opacity: 1;
-        }
+        .contact-email:hover::after { width: 100%; background: var(--accent); opacity: 1; }
 
         .email-copy-hint {
-            font-size: 0.78rem;
+            font-size: 0.74rem;
             color: var(--text-muted);
             letter-spacing: 0.08em;
             text-transform: uppercase;
             margin-top: 0.6rem;
         }
 
-        .social-nav {
-            display: flex;
-            gap: 1.4rem;
-            align-items: center;
-        }
+        .social-nav { display: flex; gap: 1rem; align-items: center; }
 
         .social-link {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-family: var(--mono);
             color: var(--text-soft);
             text-decoration: none;
@@ -1260,174 +1348,145 @@
             transition: all 0.3s;
         }
 
-        .social-link:hover {
-            color: var(--accent-ink);
-            border-color: rgba(0, 212, 255, 0.2);
-            background: var(--accent-wash);
-        }
+        .social-link:hover { color: var(--accent-ink); border-color: rgba(0, 212, 255, 0.2); background: var(--accent-wash); }
 
         footer {
-            padding: 2.25rem 4rem;
+            width: min(calc(100% - 2 * var(--gutter)), calc(var(--wrap) - 2 * var(--gutter)));
+            margin: 0 auto;
+            padding: 2.2rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-family: var(--mono);
             color: var(--text-muted);
             border-top: 1px solid var(--border);
-            max-width: 1040px;
-            margin: 0 auto;
         }
 
-        /* Reveal */
+        /* ---------- Reveal ---------- */
         .reveal {
             opacity: 0;
             transform: translateY(14px);
-            transition: opacity 0.32s var(--ease-premium), transform 0.32s var(--ease-premium);
+            transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
             transition-delay: var(--reveal-delay, 0ms);
         }
 
-        .reveal.active { opacity: 1; transform: none; }
-
-        .no-js .reveal { opacity: 1; transform: none; }
+        .reveal.active, .no-js .reveal { opacity: 1; transform: none; }
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
+                animation-delay: 0ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            .reveal, .reveal.active { opacity: 1 !important; transform: none !important; }
-            .btn-primary:hover, .card:hover, .project-card:hover { transform: none !important; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .btn-primary:hover, .product:hover { transform: none !important; }
         }
 
-        /* Responsive */
-        @media (max-width: 960px) {
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1000px) {
+            :root { --gutter: 2.5rem; }
+            .hero { grid-template-columns: 1fr; min-height: auto; gap: 3.5rem; }
+            .sheet { max-width: 520px; }
             .check-wrap { grid-template-columns: 1fr; }
             .result { position: static; }
-            .approach-grid { grid-template-columns: 1fr 1fr; }
-            .cred-grid { grid-template-columns: 1fr 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .principles { grid-template-columns: 1fr 1fr; }
+            .principle:nth-child(3) { padding-left: 0; border-left: none; }
+            .principle:nth-child(n+3) { margin-top: 1.5rem; border-top: 1px solid var(--border); }
+            .faq-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .case { grid-template-columns: 2.4rem minmax(0, 1fr); }
+            .case-body { grid-column: 2; margin-top: 1.6rem; }
+            .case-tech { grid-column: 2; }
         }
 
         @media (max-width: 768px) {
-            nav {
-                padding: 0.75rem 1rem;
+            :root { --gutter: 1.25rem; }
+
+            html { scroll-padding-top: 108px; }
+
+            .nav-inner {
+                padding-top: 0.7rem;
+                padding-bottom: 0.2rem;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 0.2rem;
+                gap: 0;
             }
 
             .logo { font-size: 1.1rem; }
-
-            .nav-right { width: 100%; }
-
-            .nav-links {
-                gap: 1.1rem;
-                flex-wrap: wrap;
-            }
-
+            .nav-links { gap: 1.1rem; flex-wrap: wrap; }
             .nav-link { font-size: 0.82rem; }
-
             .nav-cta { display: none; }
 
-            html { scroll-padding-top: 110px; }
+            section { padding-top: 4.2rem; padding-bottom: 4.2rem; }
 
-            .hero {
-                padding: 8rem 1rem 2.5rem;
-                min-height: auto;
-            }
-
-            .hero-lede { font-size: 1.08rem; }
-
-            .proof { padding: 0 1rem 1rem; }
+            .hero { padding-top: 7.5rem; padding-bottom: 2.5rem; }
+            .hero-lede { font-size: 1.06rem; }
 
             .proof-grid { grid-template-columns: 1fr 1fr; }
-
-            .proof-item:nth-child(2) { border-right: none; }
-
+            .proof-item:nth-child(3) { padding-left: 0; border-left: none; }
             .proof-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-
-            .proof-item { padding: 1.3rem 1.1rem; }
-
-            .proof-num { font-size: 2rem; }
-
-            section { padding: 4rem 1rem; }
+            .proof-num { font-size: 2.1rem; }
 
             .services-grid { grid-template-columns: 1fr; }
+            .service { padding: 2rem 1.4rem 1.8rem; }
+            .service h3 { font-size: 1.85rem; }
 
-            .service { padding: 1.9rem 1.4rem; }
-
-            .timeline-steps {
-                grid-template-columns: 1fr;
-                gap: 1.6rem;
-                padding-left: 1.8rem;
-            }
-
+            .timeline-head { flex-direction: column; gap: 0.3rem; }
+            .timeline-steps { grid-template-columns: 1fr; gap: 1.6rem; padding-left: 1.8rem; }
             .timeline-steps::before {
-                top: 0;
-                bottom: 0;
-                left: 7px;
-                right: auto;
-                width: 1px;
-                height: auto;
+                top: 0; bottom: 0; left: 7px; right: auto; width: 1px; height: auto;
                 background: linear-gradient(180deg, var(--accent), var(--border) 80%);
             }
-
             .timeline-steps li { padding: 0; }
-
-            .timeline-steps li::before { left: -1.8rem; top: 0.15rem; }
+            .timeline-steps li::before { left: -1.8rem; top: 0.1rem; }
 
             .check-form { padding: 0.4rem 1.2rem; }
-
-            .q { grid-template-columns: 1fr; }
-
-            .seg { width: 100%; }
-
+            .q { grid-template-columns: 1.6rem 1fr; }
+            .seg { grid-column: 2; width: 100%; }
             .seg label { flex: 1; justify-content: center; }
-
             .result { padding: 1.6rem 1.4rem; }
 
-            .project-card {
-                grid-template-columns: 1fr;
-                gap: 1.1rem;
-                padding: 1.8rem 1.4rem;
-            }
+            .group-head { flex-direction: column; gap: 0.2rem; }
+            .case { grid-template-columns: 1fr; padding: 1.8rem 0; }
+            .case-num { padding-top: 0; margin-bottom: 0.5rem; }
+            .case-body, .case-tech { grid-column: 1; }
+            .case-body div { grid-template-columns: 1fr; gap: 0.2rem; }
+            .case-metric { font-size: 1.75rem; }
 
-            .more-list li {
-                grid-template-columns: 1fr;
-                gap: 0.25rem;
-            }
+            .products { grid-template-columns: 1fr; }
+            .product, .product.featured { padding: 1.7rem 1.4rem; }
+            .product.featured { grid-template-columns: 1fr; gap: 0.4rem; }
+            .product.featured h4 { font-size: 2rem; }
 
-            .bg-intro { grid-template-columns: 1fr; gap: 1.4rem; }
+            .more-list li { grid-template-columns: 1fr; gap: 0.2rem; }
+            .more-link { text-align: left; }
 
-            .cred-grid { grid-template-columns: 1fr; }
+            .career li { grid-template-columns: 1fr; gap: 0.25rem; }
+            .creds { padding: 1.5rem 1.3rem 1rem; }
+            .creds dl div { grid-template-columns: 1fr; gap: 0.15rem; }
 
-            .cred.wide { grid-column: auto; }
+            .principles { grid-template-columns: 1fr; }
+            .principle, .principle + .principle { padding: 1.3rem 0 0; border-left: none; }
+            .principle + .principle { margin-top: 1.3rem; border-top: 1px solid var(--border); }
 
-            .approach-grid { grid-template-columns: 1fr; }
-
-            .contact {
-                padding: 3rem 1.25rem;
-                margin: 2rem 1rem;
-            }
-
+            .contact { padding: 3rem 1.25rem; margin: 0.5rem auto 2.5rem; }
             .contact .btn-primary { width: 100%; }
+            .next-steps { flex-direction: column; align-items: flex-start; gap: 0.6rem; width: fit-content; margin-left: auto; margin-right: auto; }
+            .social-nav { flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
 
-            .social-nav { flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
-
-            footer {
-                padding: 2rem 1rem;
-                flex-direction: column;
-                text-align: center;
-            }
+            footer { flex-direction: column; text-align: center; }
         }
 
         @media (max-width: 420px) {
             .btn-label-full { display: none; }
             .btn-label-short { display: inline; }
-            .nav-links { gap: 0.9rem; }
+            .nav-links { gap: 0.85rem; }
+            .sheet-meta { grid-template-columns: 1fr; }
+            .sheet-meta div:nth-child(n+2) { border-top: 1px solid var(--border); padding-top: 0.7rem; }
         }
     </style>
 </head>
@@ -1435,39 +1494,104 @@
     <a href="#main" class="skip-link">Skip to content</a>
 
     <nav aria-label="Primary">
-        <a href="#top" class="logo">Kaveh Momeni</a>
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#readiness" class="nav-link">Check</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#background" class="nav-link">Background</a>
-                <a href="#contact" class="nav-link">Contact</a>
+        <div class="nav-inner">
+            <a href="#top" class="logo">Kaveh Momeni</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#readiness" class="nav-link">Readiness</a>
+                    <a href="#work" class="nav-link">Work</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <a href="#contact" class="nav-cta js-booking">Book a fit call</a>
             </div>
-            <a href="#contact" class="nav-cta js-booking">Book a fit call</a>
         </div>
     </nav>
 
     <main id="main">
     <section class="hero" id="top">
-        <div class="status">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="status-text">Taking on consulting work<span class="sep" aria-hidden="true">·</span>Berlin and remote</span>
+        <div class="hero-copy">
+            <div class="status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span class="status-text">Taking on consulting work<span class="sep" aria-hidden="true">·</span>Berlin and remote</span>
+            </div>
+            <h1>Turning AI and data work into <em>shipped</em> products.</h1>
+            <p class="hero-lede">Data science and AI project management for teams that need one workflow to reach production. I map it, design the system around it, and leave your team able to build and run it.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary js-booking"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span><span class="arrow" aria-hidden="true">→</span></a>
+                <a href="#work" class="text-link">See the work</a>
+            </div>
+            <p class="trust-line">PMP® · M.Sc. Data Science · Berlin</p>
         </div>
-        <h1>Turning AI and data work into <em>shipped</em> products.</h1>
-        <p class="hero-lede">Data science and AI project management for teams that need one workflow to reach production. I map it, design the system around it, and leave your team able to build and run it.</p>
-        <div class="hero-actions">
-            <a href="#contact" class="btn-primary js-booking"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
-            <a href="#work" class="text-link">See selected work</a>
-        </div>
-        <p class="trust-line">PMP® · M.Sc. Data Science · Berlin</p>
+
+        <figure class="panel sheet" aria-labelledby="sheetCaption">
+            <div class="sheet-head">
+                <span class="label">Blueprint · Sheet 02 / 04</span>
+                <span class="label label-muted">Example</span>
+            </div>
+            <div class="sheet-figure">
+                <svg class="bp" viewBox="0 0 400 222" role="img" aria-label="Example workflow diagram: documents arrive by email, PDF or voice, fields are extracted, a person approves, and the entry is posted to the accounting system. Rejected items go to a manual queue.">
+                    <defs>
+                        <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path class="arrowhead" d="M0 0 L8 4 L0 8 z"/>
+                        </marker>
+                    </defs>
+
+                    <g>
+                        <rect class="n-box" x="16" y="18" width="132" height="48" rx="8"/>
+                        <text class="n-title" x="28" y="38">INTAKE</text>
+                        <text class="n-sub" x="28" y="54">email · PDF · voice</text>
+                    </g>
+                    <g>
+                        <rect class="n-box" x="252" y="18" width="132" height="48" rx="8"/>
+                        <text class="n-title" x="264" y="38">EXTRACT</text>
+                        <text class="n-sub" x="264" y="54">OCR + language model</text>
+                    </g>
+                    <g>
+                        <rect class="n-box key" x="252" y="116" width="132" height="48" rx="8"/>
+                        <text class="n-title" x="264" y="136">REVIEW</text>
+                        <text class="n-sub" x="264" y="152">a person approves</text>
+                    </g>
+                    <g>
+                        <rect class="n-box" x="16" y="116" width="132" height="48" rx="8"/>
+                        <text class="n-title" x="28" y="136">LEDGER</text>
+                        <text class="n-sub" x="28" y="152">accounting system</text>
+                    </g>
+
+                    <path class="edge draw" style="--i:0" d="M150 42 H248" marker-end="url(#ah)"/>
+                    <text class="edge-label" x="199" y="35" text-anchor="middle">documents</text>
+
+                    <path class="edge draw" style="--i:1" d="M318 68 V112" marker-end="url(#ah)"/>
+                    <text class="edge-label" x="310" y="93" text-anchor="end">fields + confidence</text>
+
+                    <path class="edge draw" style="--i:2" d="M250 140 H152" marker-end="url(#ah)"/>
+                    <text class="edge-label" x="201" y="133" text-anchor="middle">approved entry</text>
+
+                    <path class="edge-dash draw" style="--i:3" d="M318 166 V188"/>
+                    <text class="dim-label" x="318" y="201" text-anchor="middle">rejected: manual queue</text>
+
+                    <line class="dim" x1="16" y1="196" x2="148" y2="196"/>
+                    <line class="dim" x1="16" y1="191" x2="16" y2="201"/>
+                    <line class="dim" x1="148" y1="191" x2="148" y2="201"/>
+                    <text class="dim-label" x="82" y="188" text-anchor="middle">posted within 24 h</text>
+                </svg>
+            </div>
+            <dl class="sheet-meta">
+                <div><dt>Workflow</dt><dd>Supplier invoice intake</dd></div>
+                <div><dt>Owner</dt><dd>Finance operations lead</dd></div>
+                <div><dt>Done when</dt><dd>Posted within 24 hours</dd></div>
+                <div><dt>If it is wrong</dt><dd>A person sends it back</dd></div>
+            </dl>
+            <figcaption class="sheet-caption" id="sheetCaption">One page of a sprint blueprint, with an illustrative workflow.</figcaption>
+        </figure>
     </section>
 
     <div class="proof reveal" aria-label="At a glance">
         <div class="proof-grid">
             <div class="proof-item">
                 <span class="proof-num">5<small>+</small></span>
-                <span class="proof-label">years of production data science and ML</span>
+                <span class="proof-label">years of data science and ML in production</span>
             </div>
             <div class="proof-item">
                 <span class="proof-num">15<small>+</small></span>
@@ -1487,60 +1611,66 @@
     <section id="services">
         <p class="section-title" data-step="1">Services</p>
         <h2 class="section-heading">Two ways to work together.</h2>
-        <p class="section-intro">Both are scoped and finite. Each one ends with something your team keeps.</p>
+        <p class="section-intro">Both are scoped and finite, and each one ends with something your team keeps.</p>
 
         <div class="services-grid" data-reveal-group>
-            <article class="card service reveal">
-                <p class="service-kicker">2 weeks · one workflow</p>
+            <article class="panel service primary reveal">
+                <div class="service-top">
+                    <span class="label">2 weeks · one workflow</span>
+                    <span class="label label-muted">Start here</span>
+                </div>
                 <h3>Architecture Sprint</h3>
-                <p class="service-lede">For teams with an AI demo or a messy manual process that should run in production. We pick one workflow and get it to a plan your team can build.</p>
-                <p class="service-list-label">You leave with</p>
-                <ul class="check-list">
-                    <li>A constraint and stakeholder map <span>of the real bottleneck, not the demo</span></li>
-                    <li>A target architecture <span>with components, data flow, and failure modes</span></li>
-                    <li>A governance path <span>so it is clear who owns and runs it after day 14</span></li>
-                    <li>A build-ready blueprint <span>with sequenced next steps</span></li>
-                </ul>
+                <p class="service-lede">For teams with an AI demo or a manual process that should run in production. We pick one workflow and take it to a plan your team can build.</p>
+                <ol class="deliverables">
+                    <li><p>A constraint and stakeholder map <span>of the real bottleneck, not the demo</span></p></li>
+                    <li><p>A target architecture <span>with components, data flow, and failure modes</span></p></li>
+                    <li><p>A governance path <span>that says who owns and runs it after day 14</span></p></li>
+                    <li><p>A build-ready blueprint <span>with sequenced next steps</span></p></li>
+                </ol>
                 <p class="service-foot">After the sprint: an optional scoped build or advisory. No open-ended retainer.</p>
             </article>
 
-            <article class="card service reveal">
-                <p class="service-kicker">Workshops · for PMs and PMOs</p>
+            <article class="panel service reveal">
+                <div class="service-top">
+                    <span class="label">Workshops · PMs and PMOs</span>
+                </div>
                 <h3>AI for Project Teams</h3>
-                <p class="service-lede">Hands-on sessions built on the 30-hour course I designed and taught in three rounds. Real cases from engineering and construction operations, adapted to your team.</p>
-                <p class="service-list-label">Topics</p>
-                <ul class="check-list">
-                    <li>Knowledge management <span>and reporting with generative AI</span></li>
-                    <li>Risk prediction <span>and predictive analytics for projects</span></li>
-                    <li>Agentic automation <span>for scheduling and status work</span></li>
-                    <li>What it takes to run a model <span>in production, without the hype</span></li>
-                </ul>
-                <p class="service-foot">Materials from a public round: <a href="https://github.com/kvmmn/aipm-2025-1" target="_blank" rel="noopener">github.com/kvmmn/aipm-2025-1</a></p>
+                <p class="service-lede">Hands-on sessions built on the 30-hour course I designed and taught in three rounds, using real cases from engineering and construction operations.</p>
+                <ol class="deliverables">
+                    <li><p>Knowledge management <span>and reporting with generative AI</span></p></li>
+                    <li><p>Risk prediction <span>and predictive analytics for projects</span></p></li>
+                    <li><p>Agentic automation <span>for scheduling and status work</span></p></li>
+                    <li><p>Running a model in production <span>without the hype</span></p></li>
+                </ol>
+                <p class="service-foot">Materials from a public round: <a class="inline-link" href="https://github.com/kvmmn/aipm-2025-1" target="_blank" rel="noopener">aipm-2025-1 on GitHub</a></p>
             </article>
         </div>
 
         <p class="services-note">Not sure which one fits? That is what the fit call is for.</p>
 
         <div class="timeline reveal">
-            <h3 class="timeline-title">How a sprint runs</h3>
+            <div class="timeline-head">
+                <h3 class="timeline-title">How a sprint runs</h3>
+                <span class="label label-muted">Fixed scope · fixed price</span>
+            </div>
             <ol class="timeline-steps">
                 <li>
-                    <span class="timeline-when">Day 0</span>
+                    <span class="label">Day 0</span>
                     <h4>Fit call</h4>
                     <p>25 minutes. If a sprint is the wrong tool, I will say so before you pay.</p>
                 </li>
                 <li>
-                    <span class="timeline-when">Week 1</span>
+                    <span class="label">Week 1</span>
                     <h4>Discovery</h4>
                     <p>Kickoff with the people who own the work. Constraint mapping and architecture options.</p>
                 </li>
                 <li>
-                    <span class="timeline-when">Week 2</span>
+                    <span class="label">Week 2</span>
                     <h4>Design</h4>
                     <p>The chosen design, governance, and blueprint. A mid-sprint check and a final readout.</p>
                 </li>
                 <li>
-                    <span class="timeline-when">After</span>
+                    <span class="label">After</span>
                     <h4>Yours to keep</h4>
                     <p>Everything lives in a shared doc you keep. Your team builds, or we scope a follow-on.</p>
                 </li>
@@ -1554,7 +1684,7 @@
         <p class="section-intro">Six questions I ask on most fit calls. Answer them here first. Nothing is sent or stored.</p>
 
         <div class="check-wrap">
-            <form class="card check-form" id="readinessForm" aria-label="Production readiness check">
+            <form class="panel check-form" id="readinessForm" aria-label="Production readiness check">
                 <fieldset class="q" data-gap="Name one workflow and its owner. The sprint starts there.">
                     <legend>Can you name the one workflow, and who owns it today?</legend>
                     <div class="seg">
@@ -1605,8 +1735,8 @@
                 </fieldset>
             </form>
 
-            <aside class="card result" id="readinessResult" aria-live="polite">
-                <p class="result-score" id="resultScore">0 of 6 answered</p>
+            <aside class="panel result" id="readinessResult" aria-live="polite">
+                <p class="label label-muted result-score" id="resultScore">0 of 6 answered</p>
                 <div class="meter" aria-hidden="true"><span id="resultMeter"></span></div>
                 <h3 id="resultTitle">Answer a few questions.</h3>
                 <p id="resultText">Your result and the gaps worth closing will show here as you go.</p>
@@ -1620,92 +1750,100 @@
     <section id="work">
         <p class="section-title" data-step="3">Selected work</p>
         <h2 class="section-heading">Systems that left the demo stage.</h2>
-        <p class="section-intro">Products, production ML, and open-source tools. Each one states how mature it is.</p>
+        <p class="section-intro">Production results first, then products I build and run myself. Each one says how mature it is.</p>
 
-        <div class="projects-list" data-reveal-group>
-            <article class="card project-card featured reveal">
-                <div class="project-meta">
-                    <h3>DISPOTIF</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Product · Human-in-the-loop AI</span>
-                        <span class="project-live"><span class="status-dot" aria-hidden="true"></span>Live demo</span>
-                    </div>
+        <div class="group-head">
+            <h3>In production</h3>
+            <p>Employer and client work</p>
+        </div>
+        <ol class="cases" data-reveal-group>
+            <li class="case reveal">
+                <span class="case-num">01</span>
+                <div class="case-head">
+                    <h4>Project-risk detection in Jira</h4>
+                    <p class="case-kind">Production ML and AI project management, engineering firm</p>
+                    <p class="case-metric">10+ days → &lt;24 h<small>to detect a project risk</small></p>
                 </div>
-                <div class="project-desc">
+                <dl class="case-body">
+                    <div><dt>Problem</dt><dd>Risks were found by manual review, often 10 or more days after the first signal.</dd></div>
+                    <div><dt>Built</dt><dd>An NLP and gradient-boosting pipeline that scores risk from unstructured project data and raises explained alerts inside Jira, where the team already works.</dd></div>
+                    <div><dt>Result</dt><dd>Risks flagged in under 24 hours, with <strong>about 80% less manual review</strong>. One of five AI systems I shipped there, alongside finance intake, scheduling, pricing, and procurement.</dd></div>
+                </dl>
+                <p class="case-tech">ParsBERT · XLM-RoBERTa · XGBoost / LightGBM · SHAP · Jira REST and Forge</p>
+            </li>
+            <li class="case reveal">
+                <span class="case-num">02</span>
+                <div class="case-head">
+                    <h4>Demand forecasting in production</h4>
+                    <p class="case-kind">Data science and MLOps, retail and food service (SnappStore)</p>
+                    <p class="case-metric">~12%<small>fewer stock-outs</small></p>
+                </div>
+                <dl class="case-body">
+                    <div><dt>Problem</dt><dd>Replenishment needed reliable weekly demand numbers, inside the tools teams already used.</dd></div>
+                    <div><dt>Built</dt><dd>Hybrid ARIMA and LSTM forecasting, served as a FastAPI service on Docker and Kubernetes and wired into CRM, order, and POS workflows, with dashboards for operations.</dd></div>
+                    <div><dt>Result</dt><dd><strong>About 12% fewer stock-outs</strong>, with forecast error of 10 to 15% MAPE.</dd></div>
+                </dl>
+                <p class="case-tech">Python · ARIMA · LSTM · FastAPI · Docker · Kubernetes · Metabase</p>
+            </li>
+        </ol>
+
+        <div class="group-head">
+            <h3>Products and open source</h3>
+            <p>Built and run by me</p>
+        </div>
+        <div class="products" data-reveal-group>
+            <article class="panel product featured reveal">
+                <div>
+                    <div class="product-top">
+                        <span class="label">Product · Human-in-the-loop AI</span>
+                    </div>
+                    <h4>DISPOTIF</h4>
+                    <span class="live"><span class="status-dot" aria-hidden="true"></span>Live</span>
+                </div>
+                <div>
                     <p>Production control for indie film and series teams. It reads a screenplay and turns it into accountable work: <strong>owners, dependencies, blockers, and readiness you can explain</strong>. Automation proposes and people decide. Every suggestion shows its script evidence, and nothing is published silently.</p>
-                    <p>Local-first, so production data stays in the browser. It imports PDF and DOCX with OCR in English, German, and Persian, and has a full Persian right-to-left interface. An optional agent answers plain requests, keeps an audit ledger, and stops for approval before any material change.</p>
-                    <p class="project-note">Testable MVP. Validation with production teams comes next.</p>
-                    <div class="project-links">
-                        <a href="https://dispotif-81ax.vercel.app" target="_blank" rel="noopener">Open the live demo ↗</a>
+                    <p>Local-first, so production data stays in the browser. PDF and DOCX import with OCR in English, German, and Persian, and a full Persian right-to-left interface. An optional agent keeps an audit ledger and stops for approval before any material change.</p>
+                    <p class="product-status">Testable MVP. Validation with production teams comes next.</p>
+                    <div class="product-foot">
+                        <div class="product-links"><a class="inline-link" href="https://www.dispotif.space/" target="_blank" rel="noopener">dispotif.space ↗</a></div>
+                        <span class="tech">Next.js · TypeScript · Tesseract OCR</span>
                     </div>
-                    <span class="project-tech">Next.js · React · TypeScript · Tesseract OCR · Agent with audit ledger</span>
                 </div>
             </article>
 
-            <article class="card project-card reveal">
-                <div class="project-meta">
-                    <h3>Project-Risk Detection in Jira</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Production ML · AI project management</span>
-                    </div>
+            <article class="panel product reveal">
+                <div class="product-top">
+                    <span class="label">Live ops system · Telegram</span>
+                    <span class="live"><span class="status-dot" aria-hidden="true"></span>Live</span>
                 </div>
-                <div class="project-desc">
-                    <p>An NLP and gradient-boosting pipeline that scores project risk from unstructured project data and raises explained alerts inside Jira. Risk detection went from <strong>10+ days to under 24 hours</strong>, with <strong>about 80% less manual review</strong>.</p>
-                    <p>One of five production AI systems I designed and shipped at an engineering firm, alongside finance intake, scheduling support, pricing, and procurement decision support.</p>
-                    <span class="project-tech">ParsBERT · XLM-RoBERTa · XGBoost / LightGBM · SHAP · Jira REST and Forge</span>
+                <h4>Charbot</h4>
+                <p>A Telegram coordinator for a small engineering team. It turns messy group talk, text and voice, into defined work with a title, an owner, and a due date, and replies in the same chat. Persian interface, in daily use.</p>
+                <div class="product-foot">
+                    <div class="product-links">
+                        <a class="inline-link" href="https://github.com/kvmmn/charbot" target="_blank" rel="noopener">GitHub ↗</a>
+                        <a class="inline-link" href="https://chaharsotoon-charbot.fly.dev/health" target="_blank" rel="noopener">Health check ↗</a>
+                    </div>
+                    <span class="tech">Python · Fly.io · Postgres</span>
                 </div>
             </article>
 
-            <article class="card project-card reveal">
-                <div class="project-meta">
-                    <h3>Charbot</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Live ops system · Telegram</span>
-                        <span class="project-live"><span class="status-dot" aria-hidden="true"></span>Live</span>
-                    </div>
+            <article class="panel product reveal">
+                <div class="product-top">
+                    <span class="label">Open source · Agent skill</span>
                 </div>
-                <div class="project-desc">
-                    <p>A Telegram coordinator for a small engineering team. It turns messy group talk, text and voice, into defined work with a title, an owner, and a due date, and replies in the same chat. Persian interface, in daily use at Chaharsotoon.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/kvmmn/charbot" target="_blank" rel="noopener">GitHub ↗</a>
-                        <a href="https://chaharsotoon-charbot.fly.dev/health" target="_blank" rel="noopener">Health check ↗</a>
+                <h4>Dream Print</h4>
+                <p>The method behind my blueprints, released as an agent skill. It turns a vague idea or technical problem into a step-by-step service architecture on A4 Mermaid pages. It interviews you first, then draws.</p>
+                <div class="product-foot">
+                    <div class="product-links">
+                        <a class="inline-link" href="https://github.com/kvmmn/agent-skills/tree/main/dreamprint" target="_blank" rel="noopener">Repository ↗</a>
                     </div>
-                    <span class="project-tech">Python · Fly.io · Neon Postgres · Telegram Bot API · Speech</span>
-                </div>
-            </article>
-
-            <article class="card project-card reveal">
-                <div class="project-meta">
-                    <h3>Demand Forecasting in Production</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">MLOps · Retail (SnappStore)</span>
-                    </div>
-                </div>
-                <div class="project-desc">
-                    <p>Hybrid ARIMA and LSTM weekly demand forecasting for retail and food-service replenishment. Served as a FastAPI service on Docker and Kubernetes and wired into CRM, order, and POS workflows. <strong>About 12% fewer stock-outs.</strong></p>
-                    <span class="project-tech">Python · ARIMA · LSTM · FastAPI · Docker · Kubernetes · Metabase</span>
-                </div>
-            </article>
-
-            <article class="card project-card reveal">
-                <div class="project-meta">
-                    <h3>Dream Print</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Open source · Agent skill</span>
-                    </div>
-                </div>
-                <div class="project-desc">
-                    <p>An open-source agent skill that turns a vague idea or technical problem into a step-by-step service architecture, delivered as Mermaid diagram pages on A4. It interviews you first, then draws.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/kvmmn/agent-skills/tree/main/dreamprint" target="_blank" rel="noopener">Repository and install guide ↗</a>
-                    </div>
-                    <span class="project-tech">Agent Skills · Mermaid · Systems architecture</span>
+                    <span class="tech">Agent Skills · Mermaid</span>
                 </div>
             </article>
         </div>
 
         <div class="more-work reveal">
-            <h3>More work</h3>
+            <span class="label label-muted">Also</span>
             <ul class="more-list">
                 <li>
                     <span class="more-name">PMO and delivery governance</span>
@@ -1715,100 +1853,80 @@
                 <li>
                     <span class="more-name">Numerai tournament pipeline</span>
                     <span class="more-desc">Quantitative ML with era-aware cross-validation, LightGBM, and automated submission.</span>
-                    <a class="more-link" href="https://github.com/kvmmn/numerai-tournament-bot" target="_blank" rel="noopener">GitHub ↗</a>
+                    <a class="more-link inline-link" href="https://github.com/kvmmn/numerai-tournament-bot" target="_blank" rel="noopener">GitHub ↗</a>
                 </li>
                 <li>
                     <span class="more-name">Big data for energy systems</span>
                     <span class="more-desc">PySpark on Dataproc proof of concept for energy forecasting. M.Sc. coursework.</span>
-                    <a class="more-link" href="https://github.com/kvmmn/COM7020_BigDataCloudComputing" target="_blank" rel="noopener">GitHub ↗</a>
+                    <a class="more-link inline-link" href="https://github.com/kvmmn/COM7020_BigDataCloudComputing" target="_blank" rel="noopener">GitHub ↗</a>
                 </li>
                 <li>
                     <span class="more-name">KAV</span>
                     <span class="more-desc">Early-stage, open-source research orchestrator (v0.1) for hypothesis testing and knowledge synthesis.</span>
-                    <a class="more-link" href="https://github.com/kvmmn/kav" target="_blank" rel="noopener">GitHub ↗</a>
+                    <a class="more-link inline-link" href="https://github.com/kvmmn/kav" target="_blank" rel="noopener">GitHub ↗</a>
                 </li>
             </ul>
         </div>
     </section>
 
-    <section id="background">
-        <p class="section-title" data-step="4">Background</p>
-        <h2 class="section-heading">Delivery first, then data science.</h2>
-        <div class="bg-intro">
-            <p>Before data science, I spent 15+ years leading construction, manufacturing, and digital product delivery. That is where the habits come from: scope it, own it, finish it. Since 2020 I have built and shipped ML systems in forecasting, NLP, pricing, risk, and agent workflows.</p>
-            <p class="bg-langs"><strong>Working languages:</strong> English and Persian. German in progress.</p>
+    <section id="about">
+        <p class="section-title" data-step="4">About</p>
+        <div class="about-grid">
+            <div class="reveal">
+                <h2 class="section-heading">Delivery first, then data science.</h2>
+                <p class="about-lede">I came to machine learning from project delivery, not the other way round. So I start where most AI work stalls: owners, scope, and what happens on the day it is wrong.</p>
+                <ol class="career">
+                    <li>
+                        <span class="when">2023 to now</span>
+                        <div><strong>Teaching and advisory</strong><span>AI in project management courses, company workshops, adoption advice.</span></div>
+                    </li>
+                    <li>
+                        <span class="when">2020 to 2025</span>
+                        <div><strong>Data science and ML in production</strong><span>Forecasting, NLP, pricing, risk, and agent workflows. Kongereh, SnappStore, Chaharsotoon.</span></div>
+                    </li>
+                    <li>
+                        <span class="when">2006 to 2020</span>
+                        <div><strong>Project and delivery leadership</strong><span>Construction, manufacturing, and digital products. From site engineer to project manager, PMO lead, and technical director.</span></div>
+                    </li>
+                </ol>
+            </div>
+
+            <aside class="panel creds reveal" aria-label="Credentials">
+                <span class="label">In short</span>
+                <dl>
+                    <div><dt>Certified</dt><dd><strong>PMP®</strong><span>Project Management Institute, since 2016</span></dd></div>
+                    <!--
+                        SAP slot. Hidden until the certificates are issued.
+                        To publish: remove `hidden`, set the exact certificate names,
+                        and link the Credly badge.
+                    -->
+                    <div data-credential="sap" hidden><dt>SAP</dt><dd><strong>SAP Certified Developer and Consultant</strong><span>SAP, issued MONTH YEAR</span></dd></div>
+                    <div><dt>Studying</dt><dd><strong>M.Sc. Data Science</strong><span>Arden University Berlin, expected 2027</span></dd></div>
+                    <div><dt>Published</dt><dd><strong>Federated vs. centralized LLMs at the edge</strong><span>JDCS 9(1), 2026, second author</span></dd></div>
+                    <div><dt>Taught</dt><dd><strong>AI Applications in Project Management</strong><span>30 hours, three rounds</span></dd></div>
+                    <div><dt>Languages</dt><dd><strong>English, Persian</strong><span>German in progress</span></dd></div>
+                </dl>
+            </aside>
         </div>
 
-        <div class="cred-grid" data-reveal-group>
-            <div class="card cred reveal">
-                <span class="cred-type">Certification</span>
-                <h4>PMP®</h4>
-                <p>Project Management Institute. Certified since 2016.</p>
-            </div>
-            <div class="card cred reveal">
-                <span class="cred-type">Certification</span>
-                <h4>IPMA Level D</h4>
-                <p>International Project Management Association.</p>
-            </div>
-            <div class="card cred reveal">
-                <span class="cred-type">Education</span>
-                <h4>M.Sc. Data Science</h4>
-                <p>Arden University, Berlin. In progress, expected 2027. B.Sc. in Civil Engineering before that.</p>
-            </div>
-
-            <!--
-                SAP credential slots. Hidden until the certificates are issued.
-                To publish one: remove the `hidden` attribute, set the exact
-                certificate name and issue date, and add the credential link
-                (e.g. the Credly badge URL).
-            -->
-            <div class="card cred reveal" data-credential="sap-developer" hidden>
-                <span class="cred-type">Certification</span>
-                <h4>SAP Certified Developer</h4>
-                <p>SAP. Issued MONTH YEAR.</p>
-                <a href="#" target="_blank" rel="noopener">Verify credential ↗</a>
-            </div>
-            <div class="card cred reveal" data-credential="sap-consultant" hidden>
-                <span class="cred-type">Certification</span>
-                <h4>SAP Certified Consultant</h4>
-                <p>SAP. Issued MONTH YEAR.</p>
-                <a href="#" target="_blank" rel="noopener">Verify credential ↗</a>
-            </div>
-
-            <div class="card cred wide reveal">
-                <span class="cred-type">Research</span>
-                <h4>The Price of Privacy: Federated vs. Centralized LLMs at the Surgical Edge</h4>
-                <p>Journal of Distributed Computing and Systems 9(1), 9 to 17, 2026. Second author. Privacy, latency, and energy trade-offs of fine-tuning LLMs on edge hardware, with data kept local.</p>
-            </div>
-            <div class="card cred reveal">
-                <span class="cred-type">Teaching</span>
-                <h4>AI Applications in Project Management</h4>
-                <p>30-hour course, three rounds. OnAcademy, PMPiran, Idea School.</p>
-                <a href="https://github.com/kvmmn/aipm-2025-1" target="_blank" rel="noopener">Course materials ↗</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="approach">
-        <p class="section-title" data-step="5">How I work</p>
-        <div class="approach-grid" data-reveal-group>
-            <div class="card approach-card reveal">
-                <span class="approach-num">01</span>
+        <div class="principles" data-reveal-group>
+            <div class="principle reveal">
+                <span class="label">01</span>
                 <h4>Problem first</h4>
                 <p>Find the real operational constraint before drawing any architecture.</p>
             </div>
-            <div class="card approach-card reveal">
-                <span class="approach-num">02</span>
-                <h4>Pragmatic scope</h4>
-                <p>Small, feasible steps that fit how the business actually runs.</p>
+            <div class="principle reveal">
+                <span class="label">02</span>
+                <h4>Small scope</h4>
+                <p>Feasible steps that fit how the business actually runs.</p>
             </div>
-            <div class="card approach-card reveal">
-                <span class="approach-num">03</span>
+            <div class="principle reveal">
+                <span class="label">03</span>
                 <h4>People decide</h4>
                 <p>Automation proposes. Review, approval, and an audit trail stay with the team.</p>
             </div>
-            <div class="card approach-card reveal">
-                <span class="approach-num">04</span>
+            <div class="principle reveal">
+                <span class="label">04</span>
                 <h4>Leave them able</h4>
                 <p>Clear docs and designs, so your team owns the system after I leave.</p>
             </div>
@@ -1816,32 +1934,44 @@
     </section>
 
     <section id="faq">
-        <p class="section-title" data-step="6">Questions</p>
-        <div class="faq">
-            <details>
-                <summary>What does it cost?</summary>
-                <p>The sprint is a fixed scope at a fixed price. I quote it after the fit call, once the workflow and its complexity are clear. Workshops are priced by format and group size.</p>
-            </details>
-            <details>
-                <summary>Do you also build the system?</summary>
-                <p>Sometimes. After the blueprint, a scoped build or advisory is possible and priced separately. Many teams build it themselves, and the blueprint is written for that.</p>
-            </details>
-            <details>
-                <summary>Remote or on site?</summary>
-                <p>Berlin based and remote friendly. On site in Berlin when it helps the work.</p>
-            </details>
-            <details>
-                <summary>What if a sprint is the wrong tool?</summary>
-                <p>Then I will say so on the fit call, before you pay anything. Sometimes the right first step is a workshop, or a smaller fix.</p>
-            </details>
+        <p class="section-title" data-step="5">Questions</p>
+        <div class="faq-grid">
+            <h2 class="section-heading">Before you book.</h2>
+            <div class="faq">
+                <details>
+                    <summary>What does it cost?</summary>
+                    <p>The sprint is a fixed scope at a fixed price. I quote it after the fit call, once the workflow and its complexity are clear. Workshops are priced by format and group size.</p>
+                </details>
+                <details>
+                    <summary>What do you need from us?</summary>
+                    <p>One person who owns the workflow, time with the people who run it today, and access to the data or documents it uses.</p>
+                </details>
+                <details>
+                    <summary>Do you also build the system?</summary>
+                    <p>Sometimes. After the blueprint, a scoped build or advisory is possible and priced separately. Many teams build it themselves, and the blueprint is written for that.</p>
+                </details>
+                <details>
+                    <summary>Remote or on site?</summary>
+                    <p>Berlin based and remote friendly. On site in Berlin when it helps the work.</p>
+                </details>
+                <details>
+                    <summary>What if a sprint is the wrong tool?</summary>
+                    <p>Then I will say so on the fit call, before you pay anything. Sometimes the right first step is a workshop, or a smaller fix.</p>
+                </details>
+            </div>
         </div>
     </section>
 
     <section class="contact" id="contact">
         <h2>Book a fit call</h2>
         <p>If you have one workflow that should reach production, or a team that wants to use AI well, start with 25 minutes.</p>
+        <ol class="next-steps">
+            <li><span>1</span>Pick a slot</li>
+            <li><span>2</span>We talk for 25 minutes</li>
+            <li><span>3</span>If it fits, a written scope and price</li>
+        </ol>
         <div class="contact-links">
-            <a href="#" class="btn-primary js-booking" id="contactBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span></a>
+            <a href="#" class="btn-primary js-booking" id="contactBookingBtn"><span class="btn-label-full">Schedule a 25-minute fit call</span><span class="btn-label-short">Schedule a fit call</span><span class="arrow" aria-hidden="true">→</span></a>
             <div class="email-artistic-container">
                 <a href="mailto:kaveh.momeni@gmail.com?subject=Fit%20call" class="contact-email" id="emailBtn">kaveh.momeni@gmail.com</a>
                 <span class="email-copy-hint" id="copyHint">Click to copy address</span>
@@ -1883,9 +2013,9 @@
         // Reveal on scroll
         const reveals = document.querySelectorAll('.reveal');
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const REVEAL_DURATION_MS = 320;
-        const REVEAL_MAX_SECTION_MS = 400;
-        const REVEAL_STAGGER_MS = 60;
+        const REVEAL_DURATION_MS = 400;
+        const REVEAL_MAX_SECTION_MS = 520;
+        const REVEAL_STAGGER_MS = 70;
 
         const revealElement = (el, delayMs = 0) => {
             el.style.setProperty('--reveal-delay', `${delayMs}ms`);
@@ -1918,7 +2048,7 @@
                     }
                     observer.unobserve(target);
                 });
-            }, { threshold: 0.12, rootMargin: '0px 0px -72px 0px' });
+            }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
             document.querySelectorAll('[data-reveal-group]').forEach(group => observer.observe(group));
             reveals.forEach(el => {
